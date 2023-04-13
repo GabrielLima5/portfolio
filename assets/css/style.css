@@ -806,8 +806,9 @@ a{
 }
 
 @media only screen and (max-width: 500px){
-    wbr{
-        display: inline;
+    main .home .text #typing-effect{
+        word-break: normal;
+        white-space: unset;
     }
 
     main .home .text,
