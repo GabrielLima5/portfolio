@@ -18,8 +18,6 @@ function responsiveEvents(){
     });
 }
 
-responsiveEvents();
-
 // ANIMATION SETTINGS
 function scrollAnimation(){
 
@@ -38,8 +36,6 @@ function scrollAnimation(){
     window.addEventListener('scroll', animationScroll());
 }
 
-scrollAnimation();
-
 function imageAnimation(){
     const myImage = document.querySelector('.image img');
 
@@ -51,8 +47,6 @@ function imageAnimation(){
         myImage.src = 'assets/images/me.png'
     });
 }
-
-imageAnimation();
 
 // UNAVAILABLE THINGS IN THE SITE
 function comingSoonAlert(e){
@@ -66,8 +60,6 @@ function unavailableThings(){
     });
 }
 
-unavailableThings()
-
 // FORM SUBMIT
 function formSubmit(){
     document.querySelector('form').addEventListener('submit', e => {
@@ -76,4 +68,28 @@ function formSubmit(){
     });
 }
 
-formSubmit();
+// SHOW MORE DIVS
+const showMoreBtn = document.querySelector('.show-more-button')
+showMoreBtn.addEventListener('click', toggleShow)
+
+const showLessBtn = document.querySelector('.show-less-button')
+showLessBtn.addEventListener('click', toggleShow)
+
+function toggleShow(){
+    const divs = document.querySelectorAll('.show-more')
+    divs.forEach(div => {
+        div.classList.toggle('hide')
+        div.style.display = 'flex'
+        div.style.flexWrap = 'wrap'
+        div.style.justifyContent = 'center'
+        showMoreBtn.classList.toggle('hide')
+        showLessBtn.classList.toggle('hide')
+    })
+}
+
+// INVOKING FUNCTIONS
+responsiveEvents()
+scrollAnimation()
+imageAnimation()
+unavailableThings()
+formSubmit()
