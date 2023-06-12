@@ -23,6 +23,10 @@ wbr{
     right: 0 !important;
 }
 
+.reduce-sizing{
+    font-size: 1.7em !important;
+}
+
 body{
     font-family: 'Quicksand', sans-serif;
     margin: 0;
@@ -60,7 +64,9 @@ header a{
 }
 
 header button,
-main .home button{
+main .home button,
+main .projects button.show-more-button,
+main .projects button.show-less-button{
     border: none;
     outline: none;
     background: rgb(104, 11, 104);
@@ -148,7 +154,8 @@ main .home button{
 }
 
 header button:hover,
-main .home button:hover{
+main .home button:hover,
+main .projects button.show-more-button:hover{
     background-color: rgb(9, 125, 115);
     color: rgb(255, 255, 255);
     cursor: pointer;
@@ -175,14 +182,29 @@ main .about-me .text-me p{
     font-size: 1.3em;
 }
 
+main .about-me .image-me{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 main .about-me .image-me > img{
     width: 450px;
 }
 
 main .about-me .image-me .techs{
+    max-width: 400px;
     font-size: 1.3em;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-self: flex-end;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+main .about-me .image-me .techs .tech{
+    margin-right: 20px;
+    margin-bottom: 10px;
 }
 
 main .about-me .image-me .techs .tech:hover,
@@ -263,6 +285,11 @@ main .projects .other-projects{
     width: 1300px;
 }
 
+main .projects button.show-more-button,
+main .projects button.show-less-button{
+    margin: 0;
+}
+
 main .projects .square-project{
     background-color: rgb(66, 6, 66);
     width: 400px;
@@ -311,10 +338,6 @@ main .projects .featured{
 main .projects .square-project .techs span{
     font-size: .8em;
     margin-right: 20px;
-}
-
-main .projects .square-project #span-catalog{
-    font-size: 1.5em;
 }
 
 main .contacts{
@@ -538,11 +561,6 @@ a{
         justify-content: space-around;
     }
 
-    main .about-me .image-me .techs .tech{
-        margin-right: 10px;
-        margin-bottom: 10px;
-    }
-
     main .about-me .image-me > img{
         width: inherit;
     }
@@ -600,7 +618,7 @@ a{
 
     main .projects .other-projects .square-project{
         width: 370px;
-        margin-right: unset;
+    
     }
 
     [data-animation="opacity"]{
@@ -637,7 +655,7 @@ a{
     }
 
     main .projects .other-projects .square-project{
-        width: 340px;
+        width: 320px;
     }
 
     main .contacts .content{
@@ -676,7 +694,7 @@ a{
     }
 
     main .projects .other-projects .square-project{
-        width: 280px;
+        width: 270px;
         height: 360px;
     }
 }
