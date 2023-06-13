@@ -947,9 +947,3 @@ a{
         margin-right: 18px;
     }
 }
-
-@media only screen and (max-height: 800px){
-    main .home{
-        height: 900px;
-    }
-}
