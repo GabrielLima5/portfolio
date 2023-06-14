@@ -24,7 +24,7 @@ wbr{
 }
 
 .reduce-sizing{
-    font-size: 1.7em !important;
+    font-size: 1.4em !important;
 }
 
 body{
@@ -824,6 +824,10 @@ a{
 }
 
 @media only screen and (max-width: 500px){
+    main .home{
+        margin: 50px 0 100px 0;
+    }
+
     main .home .text #typing-effect{
         word-break: normal;
         white-space: unset;
@@ -945,11 +949,5 @@ a{
 
     main .projects .square-project .techs span{
         margin-right: 18px;
-    }
-}
-
-@media only screen and (max-height: 800px){
-    main .home{
-        height: 900px;
     }
 }
