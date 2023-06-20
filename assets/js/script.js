@@ -1,3 +1,8 @@
+const body = document.querySelector('body')
+const header = document.querySelector('header')
+const myImage = document.querySelector('.image img')
+const squareProjects = document.querySelectorAll('.square-project')
+
 // RESPONSIVE SETTINGS
 function responsiveEvents(){
     const menu = document.querySelector('.menu');
@@ -37,14 +42,14 @@ function scrollAnimation(){
 }
 
 function imageAnimation(){
-    const myImage = document.querySelector('.image img');
-
     myImage.addEventListener('mouseover', e => {
-        myImage.src = 'assets/images/me-smile.png'
+        const smileColor = currentColor('smile')
+        myImage.src = smileColor
     });
 
     myImage.addEventListener('mouseleave', e => {
-        myImage.src = 'assets/images/me.png'
+        const normalColor = currentColor()
+        myImage.src = normalColor
     });
 }
 
@@ -80,10 +85,113 @@ function toggleShow(){
     divs.forEach(div => {
         div.classList.toggle('hide')
         div.style.display = 'flex'
-        div.style.flexWrap = 'wrap'
+        div.style.flexDirection = 'column'
         div.style.justifyContent = 'center'
         showMoreBtn.classList.toggle('hide')
         showLessBtn.classList.toggle('hide')
+    })
+}
+
+// COLOR CHANGING FUNCTIONS
+function currentColor(smile = ''){
+    let color = null
+    const headerColor = getComputedStyle(header).getPropertyValue('background-color')
+    switch(headerColor){
+        case "rgb(3, 23, 109)":
+            color = `assets/images/me-blue${smile}.png`
+            break;
+
+        case "rgb(32, 32, 32)":
+            color = `assets/images/me-black${smile}.png`
+            break;
+
+        case "rgb(156, 0, 14)":
+            color = `assets/images/me-red${smile}.png`
+            break;
+
+        case "rgb(210, 0, 205)":
+            color = `assets/images/me-pink${smile}.png`
+            break;
+
+        case "rgb(17, 99, 0)":
+            color = `assets/images/me-green${smile}.png`
+            break;
+
+        case "rgb(0, 86, 95)":
+            color = `assets/images/me-aqua${smile}.png`
+            break;
+
+        case "rgb(166, 94, 0)":
+            color = `assets/images/me-orange${smile}.png`
+            break;
+
+        case "rgb(66, 6, 66)":
+        default:
+            color = `assets/images/me-purple${smile}.png`
+    }
+
+    return color
+}
+
+function initColorEvents(){
+    const projects = document.querySelectorAll('.project')
+    const contactBoxes = document.querySelectorAll('.contact-box')
+    const inputs = document.querySelectorAll('input')
+    const textarea = document.querySelector('textarea')
+    const divPickedColor = document.querySelector('#picked-color')
+
+    const colorItems = document.querySelectorAll('.dropdown-item')
+    colorItems.forEach(colorItem => {
+        colorItem.addEventListener('click', e => {
+            const lightColor = e.target.dataset.light
+            const darkColor = e.target.dataset.dark
+
+            projects.forEach(project => {
+                project.style.backgroundColor = lightColor
+            });
+
+            squareProjects.forEach(squareProject => {
+                squareProject.style.backgroundColor = lightColor
+            });
+
+            contactBoxes.forEach(contactBox => {
+                contactBox.style.backgroundColor = lightColor
+            });
+
+            inputs.forEach(input => {
+                input.style.backgroundColor = lightColor
+            });
+
+            body.style.backgroundColor = darkColor
+            header.style.backgroundColor = lightColor
+            textarea.style.backgroundColor = lightColor
+            divPickedColor.style.backgroundColor = darkColor
+            myImage.src = currentColor()
+            imageAnimation()
+        })
+    })
+}
+
+// PROJECT INPUT FUNCTION
+function projectInput(){
+    const input = document.querySelector('.project-input')
+
+    input.addEventListener('focus', e => {
+        toggleShow()
+    });
+
+    input.addEventListener('blur', e => {
+        toggleShow()
+    });
+
+    input.addEventListener('keyup', e => {
+        squareProjects.forEach(project => {
+            if (!project.innerText.toLowerCase().includes(e.target.value.toLowerCase())){
+                project.style.display = 'none'
+            } else {
+                project.style.display = 'flex'
+            }
+        })
     })
 }
 
@@ -93,3 +201,5 @@ scrollAnimation()
 imageAnimation()
 unavailableThings()
 formSubmit()
+initColorEvents()
+projectInput()

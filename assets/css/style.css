@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 *{
     box-sizing: border-box;
 }
@@ -13,6 +14,10 @@ i{
 
 wbr{
     display: none;
+}
+
+ol, ul{
+    margin: 0;
 }
 
 .hide{
@@ -50,6 +55,11 @@ header nav{
     height: 100%;
 }
 
+header .nav-links{
+    display: flex;
+    align-items: center;
+}
+
 header nav ol{
     width: 700px;
     display: flex;
@@ -63,20 +73,92 @@ header a{
     font-weight: bold;
 }
 
+header .dropdown-toggle {
+    display: flex;
+    align-items: center;
+}
+
+header .color-picker{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+header .dropdown-item{
+    width: 50px;
+}
+
+header .color-picker#picked-color{
+    background-color: purple;
+    border: 1px solid white;
+}
+
+header .color-picker#blue{
+    background-color: blue;
+}
+
+button{
+    background: black;
+}
+
+header .color-picker#red{
+    background-color: red;
+}
+
+header .color-picker#yellow{
+    background-color: yellow;
+}
+
+header .color-picker#black{
+    background-color: black;
+}
+
+header .color-picker#pink{
+    background-color: pink;
+}
+
+header .color-picker#green{
+    background-color: green;
+}
+
+header .color-picker#brown{
+    background-color: brown;
+}
+
+header .color-picker#aqua{
+    background-color: aqua;
+}
+
+header .color-picker#orange{
+    background-color: orange;
+}
+
+header .color-picker#purple{
+    background-color: purple;
+}
+
+header .dropdown-menu.show{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 header button,
 main .home button,
 main .projects button.show-more-button,
 main .projects button.show-less-button{
+    --bg-color: rgb(104, 11, 104);
     border: none;
     outline: none;
-    background: rgb(104, 11, 104);
+    background-color: var(--bg-color);
     color: white;
     border: #00f6e2 2px solid;
     font-family: 'Quicksand';
-    width: 126px;
+    width: 140px;
     margin-right: 50px;
     margin-top: 10px;
-    height: 50px;
+    padding: 10px;
+    height: fit-content;
 }
 
 main{
@@ -151,6 +233,8 @@ main .home .image img{
 main .home button{
     margin-top: 50px;
     width: 150px;
+    height: fit-content;
+    padding: 10px;
 }
 
 header button:hover,
@@ -277,6 +361,21 @@ main .projects .project-links i{
 main .projects .project-links i:hover,
 main .projects .square-project .link-icons i:hover{
     color: yellow;
+}
+
+main .projects .input{
+    align-self: flex-start;
+    width: 100%;
+}
+
+main .projects input{
+    border-radius: unset !important;
+    margin-bottom: 20px;
+    width: 1260px;
+}
+
+main .projects input::placeholder{
+    color: white;
 }
 
 main .projects .other-projects{
@@ -420,6 +519,7 @@ main .contacts .inputs .input{
 }
 
 main .contacts input,
+main .projects input,
 textarea{
     padding: 16px;
     color: white;
@@ -532,6 +632,9 @@ a{
         font-size: 1.6em;
     }
 
+    main .projects input{
+        width: 1065px;
+    }
 }
 
 @media only screen and (max-width: 1200px){
@@ -587,6 +690,10 @@ a{
     main .project-desc .used-techs .tech{
         margin-right: 50px;
     }
+
+    main .projects input{
+        width: 870px;
+    }
 }
 
 @media only screen and (max-width: 1000px){
@@ -618,7 +725,10 @@ a{
 
     main .projects .other-projects .square-project{
         width: 370px;
+    }
     
+    main .projects input{
+        width: 770px ;
     }
 
     [data-animation="opacity"]{
@@ -656,6 +766,10 @@ a{
 
     main .projects .other-projects .square-project{
         width: 320px;
+    }
+
+    main .projects input{
+        width: 670px;
     }
 
     main .contacts .content{
@@ -696,6 +810,10 @@ a{
     main .projects .other-projects .square-project{
         width: 270px;
         height: 360px;
+    }
+
+    main .projects input{
+        width: 570px;
     }
 }
 
@@ -764,9 +882,19 @@ a{
         animation: unset;
         border-right: unset;
     }
+
+    main .projects input{
+        width: 400px;
+    }
+
+    main .projects .input{
+        width: 470px;
+        display: flex;
+        justify-content: center;
+    }
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 650px){
 
     header{
         margin-bottom: 50px;
@@ -786,6 +914,10 @@ a{
         height: 100vh;
         background-color: #1f0022;
         transition: 0.2s right linear;
+    }
+
+    header .nav-links{
+        flex-direction: row-reverse;
     }
 
     header .open-menu,
@@ -815,12 +947,18 @@ a{
         font-size: 2em;
     }
 
+    main .projects .input{
+        display: block;
+        width: fit-content;
+    }
+
     main .about-me .text-me, 
     main .projects, 
     main .contacts, 
     main .contacts .content{
         width: 400px;
     }
+    
 }
 
 @media only screen and (max-width: 500px){
@@ -870,6 +1008,10 @@ a{
         text-align: center;
         font-size: 2.5em;
     }
+
+    main .projects input{
+        width: 300px;
+    }
 }
 
 @media only screen and (max-width: 400px){
@@ -882,6 +1024,10 @@ a{
         padding: 20px;
     }
 
+    main .projects .project-title{
+        font-size: 1.7em;
+    }
+    
     main .about-me .text-me p,
     main .projects .project-title,
     main .projects .project .description p{
@@ -924,7 +1070,8 @@ a{
     }
 
     main .about-me .text-me h1{
-        font-size: 2.4em;
+        font-size: 2.3em;
+        font-weight: bold;
         margin-top: 150px;
     }
 
@@ -949,5 +1096,22 @@ a{
 
     main .projects .square-project .techs span{
         margin-right: 18px;
+    }
+
+    main .projects input{
+        width: 250px;
+    }
+}
+
+@media only screen and (max-height: 900px){
+    main .home{
+        height: 800px;
+        margin: 100px 0 250px 0;
+    }
+}
+
+@media only screen and (max-height: 650px){
+    main .home{
+        margin: 0 0 250px 0;
     }
 }

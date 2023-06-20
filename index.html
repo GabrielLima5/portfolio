@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gabriel Lima</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="shortcut icon" href="assets/images/mylogo.png">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -17,6 +19,37 @@
             <button class="open-menu hide">
                 <i class="fa-solid fa-bars fa-2x"></i>
             </button>
+            <div class="dropdown">
+                <div class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="color-picker" id="picked-color"></div>
+                </div>
+                <div class="dropdown-menu flex-wrap" style="width: 60px;" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="blue" data-light="rgb(3 23 109)" data-dark="rgb(4 0 65)"></div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="black" data-light="rgb(32 32 32)" data-dark="rgb(0 0 0)"></div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="red" data-light="rgb(156 0 14)" data-dark="rgb(89 0 18)"></div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="pink" data-light="rgb(210 0 205)" data-dark="rgb(147 0 143)"></div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="green" data-light="rgb(17 99 0)" data-dark="rgb(15 48 1)"></div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="aqua" data-light="rgb(0 86 95)" data-dark="rgb(2 60 64)"></div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="orange" data-light="rgb(166 94 0)" data-dark="rgb(88 41 3)"></div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="color-picker" id="purple" data-light="rgb(66, 6, 66)" data-dark="rgb(104, 11, 104)"></div>
+                  </a>
+                </div>
+              </div>
             <nav>
                 <ol class="menu">
                     <button class="close-menu hide">
@@ -48,7 +81,7 @@
                 </a>
             </div>
             <div class="image">
-                <img src="assets/images/me.png" alt="Me (Gabriel Lima)">
+                <img src="assets/images/me-purple.png" alt="Me (Gabriel Lima)">
             </div>
         </section>
 
@@ -223,6 +256,11 @@
                 </div>
             </div>
 
+
+            <div class="input">
+                <input type="text" class="project-input" data-animation="opacity" placeholder="Procure um projeto ou tecnologia...">
+            </div>
+
             <div class="other-projects">
                 <div class="square-project" data-animation="opacity" id="initial-project">
                     <div class="header">
@@ -330,7 +368,7 @@
                                 <span class="type">Projeto acadêmico</span>
                             </div>
                             <div class="text">
-                                <span>Projeto de gerenciamento de usuários desenvolvido durante o Curso Completo de JavaScript com 6 Projetos Reais da Hcode Treinamentos.</span>
+                                <span>Projeto de gerenciamento de usuários desenvolvido durante o Curso Completo de JavaScript da Hcode Treinamentos.</span>
                             </div>
                         </div>
                     </div>
@@ -388,7 +426,7 @@
                                 <span class="type">Projeto pessoal</span>
                             </div>
                             <div class="text">
-                                <span>Uma landing page estática e responsiva para a empresa HALPTEC Serviços Elétricos, desenvolvida utilizando HTML, CSS e JavaScript.</span>
+                                <span>Uma landing page responsiva para a empresa HALPTEC Elétrica, desenvolvida utilizando HTML, CSS e JavaScript.</span>
                             </div>
                         </div>
                     </div>
@@ -401,265 +439,264 @@
                     </div>
                 </div>
 
-                <div class="hide show-more">
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder fa-2x"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/tela-login-EGM"><i class="fa-brands fa-square-github fa-2x"></i></a>
-                                    <a target="_blank" href="https://gabriellima5.github.io/tela-login-EGM/"><i class="fa-solid fa-arrow-up-right-from-square fa-2x"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span class="reduce-sizing">Login Mercadinho EGM</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto pessoal</span>
-                                </div>
-                                <div class="text">
-                                    <span>Uma tela de login bem apresentável para a empresa fictícia Mercadinho EGM, utlizando HTML e SCSS/SASS.</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">HTML</span>
-                                <span class="tech">SASS/SCSS</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/tela-login-edgar"><i class="fa-brands fa-square-github"></i></a>
-                                    <a target="_blank" href="https://gabriellima5.github.io/tela-login-edgar/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span>Tela de Login Edgar</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto pessoal</span>
-                                </div>
-                                <div class="text">
-                                    <span>Uma tela de login responsiva que fiz para a marca fictícia Edgar, utilizando HTML e CSS.</span>
-                                </div>
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder fa-2x"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/tela-login-EGM"><i class="fa-brands fa-square-github fa-2x"></i></a>
+                                <a target="_blank" href="https://gabriellima5.github.io/tela-login-EGM/"><i class="fa-solid fa-arrow-up-right-from-square fa-2x"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">HTML</span>
-                                <span class="tech">CSS</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span class="reduce-sizing">Login Mercadinho EGM</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto pessoal</span>
+                            </div>
+                            <div class="text">
+                                <span>Uma tela de login bem apresentável para a empresa fictícia Mercadinho EGM, utlizando HTML e SCSS/SASS.</span>
                             </div>
                         </div>
                     </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">HTML</span>
+                            <span class="tech">SASS/SCSS</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/verificador-idade"><i class="fa-brands fa-square-github"></i></a>
-                                    <a target="_blank" href="https://gabriellima5.github.io/verificador-idade/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span>Verificador de Idade</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto acadêmico</span>
-                                </div>
-                                <div class="text">
-                                    <span>Um programa que revela a idade do usuário, com base na sua data de nascimento. Desenvolvido como exercício do Curso de JavaScript, do Curso em Vídeo.</span>
-                                </div>
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/tela-login-edgar"><i class="fa-brands fa-square-github"></i></a>
+                                <a target="_blank" href="https://gabriellima5.github.io/tela-login-edgar/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">HTML</span>
-                                <span class="tech">CSS</span>
-                                <span class="tech">JavaScript</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span>Tela de Login Edgar</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto pessoal</span>
+                            </div>
+                            <div class="text">
+                                <span>Uma tela de login responsiva que fiz para a marca fictícia Edgar, utilizando HTML e CSS.</span>
                             </div>
                         </div>
                     </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/calculadora-hcode"><i class="fa-brands fa-square-github"></i></a>
-                                    <a target="_blank" href="https://gabriellima5.github.io/calculadora-hcode/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span>Calculadora Hcode</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto acadêmico</span>
-                                </div>
-                                <div class="text">
-                                    <span>Projeto de uma calculadora, desenvolvido durante o Curso Completo de JavaScript com 6 Projetos Reais da Hcode Treinamentos.</span>
-                                </div>
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/verificador-idade"><i class="fa-brands fa-square-github"></i></a>
+                                <a target="_blank" href="https://gabriellima5.github.io/verificador-idade/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">JavaScript</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span>Verificador de Idade</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto acadêmico</span>
+                            </div>
+                            <div class="text">
+                                <span>Um programa que revela a idade do usuário, com base na sua data de nascimento.</span>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/hora-do-dia"><i class="fa-brands fa-square-github"></i></a>
-                                    <a target="_blank" href="https://gabriellima5.github.io/hora-do-dia/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span>Hora do Dia</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto acadêmico</span>
-                                </div>
-                                <div class="text">
-                                    <span>Um website que mostra a hora atual e muda a cor de fundo de acordo com o período do dia corrente.</span>
-                                </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/calculadora-hcode"><i class="fa-brands fa-square-github"></i></a>
+                                <a target="_blank" href="https://gabriellima5.github.io/calculadora-hcode/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">HTML</span>
-                                <span class="tech">CSS</span>
-                                <span class="tech">JavaScript</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span>Calculadora Hcode</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto acadêmico</span>
+                            </div>
+                            <div class="text">
+                                <span>Projeto de uma calculadora, desenvolvido durante o Curso Completo de JavaScript da Hcode Treinamentos.</span>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/tabuada-hcode"><i class="fa-brands fa-square-github"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span>Tabuada Hcode</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto acadêmico</span>
-                                </div>
-                                <div class="text">
-                                    <span>Projeto de Tabuada, que mostra o número que você escolher multiplicado de 1 até 10. Desenvolvido durante o Curso Completo de HTML5 da Hcode Treinamentos.</span>
-                                </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/hora-do-dia"><i class="fa-brands fa-square-github"></i></a>
+                                <a target="_blank" href="https://gabriellima5.github.io/hora-do-dia/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">HTML</span>
-                                <span class="tech">JavaScript</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span>Hora do Dia</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto acadêmico</span>
+                            </div>
+                            <div class="text">
+                                <span>Um website que mostra a hora atual e muda a cor de fundo de acordo com o período do dia corrente.</span>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/gerador-senhas"><i class="fa-brands fa-square-github"></i></a>
-                                    <a target="_blank" href="https://gabriellima5.github.io/gerador-senhas/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span>Gerador de Senhas</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto pessoal</span>
-                                </div>
-                                <div class="text">
-                                    <span>Um simples gerador de senhas aleatórias, desenvolvido com JavaScript.</span>
-                                </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/tabuada-hcode"><i class="fa-brands fa-square-github"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">JavaScript</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span>Tabuada Hcode</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto acadêmico</span>
+                            </div>
+                            <div class="text">
+                                <span>Projeto de Tabuada, que mostra o número multiplicado de 1 até 10, feito durante o Curso de HTML5 da Hcode Treinamentos.</span>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/lista-tarefas"><i class="fa-brands fa-square-github"></i></a>
-                                    <a target="_blank" href="https://gabriellima5.github.io/lista-tarefas/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span id="span">Lista de Tarefas</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto pessoal</span>
-                                </div>
-                                <div class="text">
-                                    <span>Uma lista de tarefas (que pode servir como uma lista de compras também), desenvolvida com JavaScript.</span>
-                                </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">HTML</span>
+                            <span class="tech">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/gerador-senhas"><i class="fa-brands fa-square-github"></i></a>
+                                <a target="_blank" href="https://gabriellima5.github.io/gerador-senhas/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">HTML</span>
-                                <span class="tech">CSS</span>
-                                <span class="tech">JavaScript</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span>Gerador de Senhas</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto pessoal</span>
+                            </div>
+                            <div class="text">
+                                <span>Um simples gerador de senhas aleatórias, desenvolvido com JavaScript.</span>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="square-project" data-animation="opacity">
-                        <div class="header">
-                            <div class="icons">
-                                <i class="fa-solid fa-folder"></i>
-                                <div class="link-icons">
-                                    <a target="_blank" href="https://github.com/GabrielLima5/flappy-bird"><i class="fa-brands fa-square-github"></i></a>
-                                </div>
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    <span id="span">Flappy Bird</span>
-                                </div>
-                                <div class="project-type">
-                                    <span class="type">Projeto acadêmico</span>
-                                </div>
-                                <div class="text">
-                                    <span>Um jogo cujo objetivo é não deixar com que o pássaro colida com as barreiras. Desenvolvido durante o Curso Web Moderno da Cod3r Treinamentos.</span>
-                                </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/lista-tarefas"><i class="fa-brands fa-square-github"></i></a>
+                                <a target="_blank" href="https://gabriellima5.github.io/lista-tarefas/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="techs">
-                                <span class="tech">HTML</span>
-                                <span class="tech">CSS</span>
-                                <span class="tech">JavaScript</span>
+                        <div class="desc">
+                            <div class="title">
+                                <span id="span">Lista de Tarefas</span>
                             </div>
+                            <div class="project-type">
+                                <span class="type">Projeto pessoal</span>
+                            </div>
+                            <div class="text">
+                                <span>Uma lista de tarefas (que pode servir como uma lista de compras também), desenvolvida com JavaScript.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-project show-more hide" data-animation="opacity">
+                    <div class="header">
+                        <div class="icons">
+                            <i class="fa-solid fa-folder"></i>
+                            <div class="link-icons">
+                                <a target="_blank" href="https://github.com/GabrielLima5/flappy-bird"><i class="fa-brands fa-square-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="desc">
+                            <div class="title">
+                                <span id="span">Flappy Bird</span>
+                            </div>
+                            <div class="project-type">
+                                <span class="type">Projeto acadêmico</span>
+                            </div>
+                            <div class="text">
+                                <span>Um jogo cujo objetivo é não deixar com que o pássaro colida com as barreiras.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="techs">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
                         </div>
                     </div>
                 </div>
