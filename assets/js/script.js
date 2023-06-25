@@ -87,9 +87,10 @@ function toggleShow(){
         div.style.display = 'flex'
         div.style.flexDirection = 'column'
         div.style.justifyContent = 'center'
-        showMoreBtn.classList.toggle('hide')
-        showLessBtn.classList.toggle('hide')
-    })
+    });
+
+    showMoreBtn.classList.toggle('hide')
+    showLessBtn.classList.toggle('hide')
 }
 
 // COLOR CHANGING FUNCTIONS
