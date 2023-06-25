@@ -2,6 +2,7 @@ const body = document.querySelector('body')
 const header = document.querySelector('header')
 const myImage = document.querySelector('.image img')
 const squareProjects = document.querySelectorAll('.square-project')
+const showMoreDivs = document.querySelectorAll('.show-more')
 
 // RESPONSIVE SETTINGS
 function responsiveEvents(){
@@ -75,22 +76,35 @@ function formSubmit(){
 
 // SHOW MORE DIVS
 const showMoreBtn = document.querySelector('.show-more-button')
-showMoreBtn.addEventListener('click', toggleShow)
+showMoreBtn.addEventListener('click', showProjects)
 
 const showLessBtn = document.querySelector('.show-less-button')
-showLessBtn.addEventListener('click', toggleShow)
+showLessBtn.addEventListener('click', hideProjects)
 
-function toggleShow(){
-    const divs = document.querySelectorAll('.show-more')
-    divs.forEach(div => {
-        div.classList.toggle('hide')
+function showProjects(){
+    showMoreDivs.forEach(div => {
+        div.classList.remove('hide')
         div.style.display = 'flex'
         div.style.flexDirection = 'column'
         div.style.justifyContent = 'center'
     });
 
-    showMoreBtn.classList.toggle('hide')
-    showLessBtn.classList.toggle('hide')
+    showMoreBtn.classList.add('hide')
+    showLessBtn.classList.remove('hide')
+}
+
+function hideProjects(){
+    showMoreDivs.forEach(div => {
+        div.classList.add('hide')
+    });
+
+    showMoreBtn.classList.remove('hide')
+    showLessBtn.classList.add('hide')
+}
+
+function hideButtons(){
+    showMoreBtn.classList.add('hide')
+    showLessBtn.classList.add('hide')
 }
 
 // COLOR CHANGING FUNCTIONS
@@ -177,15 +191,16 @@ function initColorEvents(){
 function projectInput(){
     const input = document.querySelector('.project-input')
 
-    input.addEventListener('focus', e => {
-        toggleShow()
-    });
-
-    input.addEventListener('blur', e => {
-        toggleShow()
-    });
-
     input.addEventListener('keyup', e => {
+
+        if (e.target.value === ''){
+            hideProjects()
+            showMoreBtn.classList.remove('hide')
+        } else {
+            showProjects()
+            hideButtons()
+        }
+
         squareProjects.forEach(project => {
             if (!project.innerText.toLowerCase().includes(e.target.value.toLowerCase())){
                 project.style.display = 'none'
