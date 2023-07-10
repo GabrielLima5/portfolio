@@ -810,6 +810,7 @@ a{
     main .projects .other-projects .square-project{
         width: 270px;
         height: 360px;
+        text-align: center;
     }
 
     main .projects input{
@@ -857,6 +858,7 @@ a{
     main .projects .other-projects .square-project{
         width: 400px;
         height: 290px;
+        text-align: unset;
     }
 
     main .contacts .content{
