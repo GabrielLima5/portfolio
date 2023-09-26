@@ -4,6 +4,25 @@ const myImage = document.querySelector('.image img')
 const squareProjects = document.querySelectorAll('.square-project')
 const showMoreDivs = document.querySelectorAll('.show-more')
 
+// SHOW MORE DIVS
+const showMoreBtn = document.querySelector('.show-more-button')
+showMoreBtn.addEventListener('click', showProjects)
+
+const showLessBtn = document.querySelector('.show-less-button')
+showLessBtn.addEventListener('click', hideProjects)
+
+function showProjects(){
+    showMoreDivs.forEach(div => {
+        div.classList.remove('hide')
+        div.style.display = 'flex'
+        div.style.flexDirection = 'column'
+        div.style.justifyContent = 'center'
+    });
+
+    showMoreBtn.classList.add('hide')
+    showLessBtn.classList.remove('hide')
+}
+
 // RESPONSIVE SETTINGS
 function responsiveEvents(){
     const menu = document.querySelector('.menu');
@@ -74,25 +93,6 @@ function formSubmit(){
     });
 }
 
-// SHOW MORE DIVS
-const showMoreBtn = document.querySelector('.show-more-button')
-showMoreBtn.addEventListener('click', showProjects)
-
-const showLessBtn = document.querySelector('.show-less-button')
-showLessBtn.addEventListener('click', hideProjects)
-
-function showProjects(){
-    showMoreDivs.forEach(div => {
-        div.classList.remove('hide')
-        div.style.display = 'flex'
-        div.style.flexDirection = 'column'
-        div.style.justifyContent = 'center'
-    });
-
-    showMoreBtn.classList.add('hide')
-    showLessBtn.classList.remove('hide')
-}
-
 function hideProjects(){
     showMoreDivs.forEach(div => {
         div.classList.add('hide')
@@ -149,9 +149,7 @@ function currentColor(smile = ''){
 }
 
 function initColorEvents(){
-    const projects = document.querySelectorAll('.project')
-    const contactBoxes = document.querySelectorAll('.contact-box')
-    const inputs = document.querySelectorAll('input')
+    const allItems = [...document.querySelectorAll('.project'), ...squareProjects, ...document.querySelectorAll('.contact-box'), ...document.querySelectorAll('input')]
     const textarea = document.querySelector('textarea')
     const divPickedColor = document.querySelector('#picked-color')
 
@@ -161,20 +159,8 @@ function initColorEvents(){
             const lightColor = e.target.dataset.light
             const darkColor = e.target.dataset.dark
 
-            projects.forEach(project => {
-                project.style.backgroundColor = lightColor
-            });
-
-            squareProjects.forEach(squareProject => {
-                squareProject.style.backgroundColor = lightColor
-            });
-
-            contactBoxes.forEach(contactBox => {
-                contactBox.style.backgroundColor = lightColor
-            });
-
-            inputs.forEach(input => {
-                input.style.backgroundColor = lightColor
+            allItems.forEach(item => {
+                item.style.backgroundColor = lightColor
             });
 
             body.style.backgroundColor = darkColor
@@ -211,11 +197,14 @@ function projectInput(){
     })
 }
 
-// INVOKING FUNCTIONS
-responsiveEvents()
-scrollAnimation()
-imageAnimation()
-unavailableThings()
-formSubmit()
-initColorEvents()
-projectInput()
+function initEvents(){
+    responsiveEvents()
+    scrollAnimation()
+    imageAnimation()
+    unavailableThings()
+    formSubmit()
+    initColorEvents()
+    projectInput()
+}
+
+window.onload = initEvents()
