@@ -24,22 +24,38 @@ function showProjects(){
 }
 
 // RESPONSIVE SETTINGS
+function addOpacity(section){
+    section.forEach(element => {
+        element.style.opacity = 1
+    });
+}
+
+function removeOpacity(section){
+    section.forEach(element => {
+        element.style.opacity = 0.3
+    });
+}
+
 function responsiveEvents(){
     const menu = document.querySelector('.menu');
     const section =  document.querySelectorAll('section');
+    const lis = document.querySelectorAll('.menu li')
 
     document.querySelector('.open-menu').addEventListener('click', e => {
         menu.classList.add('open');
-        section.forEach(element => {
-            element.style.opacity = 0.3
-        });
+        removeOpacity(section)
+
+        lis.forEach(li => {
+            li.addEventListener('click', e => {
+                menu.classList.remove('open')
+                addOpacity(section)
+            })
+        })
     });
 
     document.querySelector('.close-menu').addEventListener('click', e => {
         menu.classList.remove('open');
-        section.forEach(element => {
-            element.style.opacity = 1
-        });
+        addOpacity(section)
     });
 }
 
@@ -82,14 +98,6 @@ function comingSoonAlert(e){
 function unavailableThings(){
     document.querySelectorAll('.coming-soon').forEach(element => {
         element.addEventListener('click', comingSoonAlert)
-    });
-}
-
-// FORM SUBMIT
-function formSubmit(){
-    document.querySelector('form').addEventListener('submit', e => {
-        e.preventDefault()
-        alert('Formulário temporariamente indisponível. :(')
     });
 }
 
@@ -202,7 +210,6 @@ function initEvents(){
     scrollAnimation()
     imageAnimation()
     unavailableThings()
-    formSubmit()
     initColorEvents()
     projectInput()
 }

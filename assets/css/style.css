@@ -273,7 +273,7 @@ main .about-me .image-me{
 }
 
 main .about-me .image-me > img{
-    width: 450px;
+    width: 350px;
 }
 
 main .about-me .image-me .techs{
@@ -450,7 +450,7 @@ main .contacts{
 
 main .contacts .content{
     width: 900px;
-    height: 750px;
+    min-height: 500px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -458,7 +458,7 @@ main .contacts .content{
 
 main .contacts .contact-boxes{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -472,12 +472,13 @@ main .contacts .contact-box{
     background-color: rgb(66, 6, 66);
     border-radius: 10px;
     padding: 32px;
+    width: 280px;
     height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 0 10px 20px 10px;
 }
 
 main .contacts .contact-box .info{
@@ -492,30 +493,6 @@ main .contacts .contact-box a{
 
 main .contacts .contact-box a:hover{
     color: aquamarine;
-}
-
-main .contacts .inputs{
-    width: 400px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-main .contacts .inputs form{
-    width: 100%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-main .contacts .inputs .input{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 main .contacts input,
@@ -681,7 +658,6 @@ a{
         justify-content: space-between;
     }
 
-    
     main .project .project-image img,
     main .project .project-desc{
         width: 400px;
@@ -776,15 +752,19 @@ a{
         width: 600px;
     }
 
-    main .contacts .contact-boxes,
-    main .contacts .inputs{
-        width: 270px;
+    main .contacts h1{
+        margin-bottom: 50px;
     }
 }
 
 @media only screen and (max-width: 800px){
     header nav ol{
         width: 520px;
+    }
+
+    header button{
+        margin-right: unset;
+        margin-top: unset;
     }
 
     main .home .text .span-big-text{
@@ -820,7 +800,7 @@ a{
 
 @media only screen and (max-width: 700px){
     header nav ol{
-        width: 470px;
+        width: 500px;
     }
 
     header button{
@@ -859,25 +839,6 @@ a{
         width: 400px;
         height: 290px;
         text-align: unset;
-    }
-
-    main .contacts .content{
-        flex-direction: column;
-        height: 1400px;
-    }
-
-    main .contacts .contact-box{
-        width: 350px;
-    }
-
-    main .contacts .contact-boxes{
-        width: 100%;
-        align-items: center;
-    }
-
-    main .contacts .inputs,
-    main .contacts .inputs form{
-        width: 400px;
     }
     
     main .home .text #typing-effect{
@@ -981,9 +942,7 @@ a{
     main .contacts .content,
     main .project .project-image img, 
     main .project .project-desc,
-    main .contacts .contact-box,
-    main .contacts .inputs,
-    main .contacts .inputs form{
+    main .contacts .contact-box{
         width: 300px;
     }
 
@@ -1030,7 +989,6 @@ a{
         font-size: 1.7em;
     }
     
-    main .about-me .text-me p,
     main .projects .project-title,
     main .projects .project .description p{
         text-align: center;
@@ -1056,9 +1014,7 @@ a{
     main .projects, 
     main .contacts, 
     main .contacts .content,
-    main .contacts .contact-box,
-    main .contacts .inputs,
-    main .contacts .inputs form{
+    main .contacts .contact-box{
         width: 250px;
     }
 
