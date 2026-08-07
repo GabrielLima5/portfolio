@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta.title">Rota do Portfólio — o tour de ônibus pelo meu portfólio</title>
+<link rel="icon" type="image/png" href="../assets/images/mylogo.png">
+<link rel="stylesheet" href="css/style.css">
+<!-- resolve o idioma (mesma preferência do site principal) e traduz o HTML
+     estático ANTES de data.js/game.js rodarem, pra tudo já nascer no
+     idioma certo. -->
+<script src="js/i18n.js"></script>
+</head>
+<body>
+
+<div id="canvasHost"></div>
+
+<div id="collisionFlash"></div>
+
+<!-- ===================== HUD ===================== -->
+<div id="hud" class="hidden">
+  <div class="hud-panel" id="speedPanel">
+    <div id="speedValue">0</div>
+    <div id="speedUnit">km/h</div>
+    <div id="gearRpmRow">
+      <span id="gearLabel">1ª</span>
+      <div id="rpmTrack"><div id="rpmFill"></div></div>
+    </div>
+  </div>
+
+  <div class="hud-panel" id="stopPanel">
+    <div class="label" data-i18n="hud.nextStop">Próxima exibição</div>
+    <div id="stopName">—</div>
+    <div id="stopDistanceRow">
+      <span id="stopDistance">—</span>
+      <span style="font-size:12px;color:var(--text-dim)">m</span>
+      <span id="stopArrow"></span>
+    </div>
+    <div id="stopDots"></div>
+  </div>
+
+  <div class="hud-panel" id="paxPanel">
+    <div class="label" data-i18n="hud.aboard">A bordo</div>
+    <div id="paxAboard">0 / 30</div>
+    <div id="paxWaiting">Aguardando na parada: 0</div>
+  </div>
+
+  <div class="hud-panel" id="timerPanel">
+    <div class="label" data-i18n="hud.time">Tempo</div>
+    <div id="timerValue">0:00</div>
+  </div>
+
+  <div class="hud-panel" id="smoothPanel">
+    <div class="label" data-i18n="hud.smoothness">Suavidade de condução</div>
+    <div id="smoothTrack"><div id="smoothFill"></div></div>
+    <div id="smoothCaption" data-i18n="hud.smoothCaption">Dirija com calma e precisão</div>
+  </div>
+
+  <button class="hud-panel" id="camToggleBtn" type="button" data-i18n-attr="aria-label:hud.cameraAria" aria-label="Alternar câmera">
+    <span id="camToggleIcon">🎥</span> <span id="camToggleLabel" data-i18n="hud.cameraThirdPerson">3ª pessoa</span>
+  </button>
+
+  <div id="stationMsg"></div>
+  <div id="approachPreview">
+    <div>
+      <div class="eyebrow" data-i18n="hud.approaching">Se aproximando</div>
+      <div class="name" id="approachName">—</div>
+    </div>
+  </div>
+
+  <div id="projectReveal">
+    <button class="reveal-close" id="revealClose" data-i18n-attr="aria-label:reveal.close" aria-label="Fechar">✕</button>
+    <div class="reveal-media">
+      <span class="reveal-eyebrow" id="revealEyebrow" data-i18n="hud.revealEyebrowDefault">Projeto</span>
+      <img id="revealImage" src="" alt="">
+    </div>
+    <div class="reveal-body">
+      <h3 id="revealTitle">—</h3>
+      <p id="revealDesc">—</p>
+      <div class="reveal-techs" id="revealTechs"></div>
+      <div class="reveal-links" id="revealLinks"></div>
+      <div class="reveal-score" id="revealScore"></div>
+    </div>
+  </div>
+
+  <!-- controles de toque — só aparecem sozinhos em tela sensível ao toque -->
+  <div id="touchControls">
+    <div class="touch-pad" id="touchSteer">
+      <button class="touch-btn" id="btnLeft" data-i18n-attr="aria-label:touch.left" aria-label="Virar à esquerda">◀</button>
+      <button class="touch-btn" id="btnRight" data-i18n-attr="aria-label:touch.right" aria-label="Virar à direita">▶</button>
+    </div>
+    <div class="touch-pad" id="touchDrive">
+      <button class="touch-btn" id="btnBrake" data-i18n-attr="aria-label:touch.brake" aria-label="Frear ou dar ré">▼</button>
+      <button class="touch-btn touch-btn--gas" id="btnGas" data-i18n-attr="aria-label:touch.gas" aria-label="Acelerar">▲</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TELA INICIAL / GARAGEM ===================== -->
+<div id="startScreen" class="overlay-screen">
+  <div class="card">
+    <h1 data-i18n="start.title">🚌 Rota do Portfólio</h1>
+    <h2 data-i18n="start.subtitle">O tour de ônibus pelo meu portfólio</h2>
+    <p class="desc" data-i18n="start.desc">Assuma a garagem, pegue a estrada e pare com precisão em cada cruzamento — cada um deles guarda um projeto meu de verdade, do primeiro commit ao deploy. No fim da linha, um jeito de falar comigo.</p>
+    <div class="route-preview" id="routePreview"></div>
+    <div class="controls-grid">
+      <div><b>W / ↑</b> — <span data-i18n="start.accelerate">Acelerar</span></div>
+      <div><b>S / ↓</b> — <span data-i18n="start.brakeReverse">Frear / Ré</span></div>
+      <div><b>A / ←</b> — <span data-i18n="start.turnLeft">Virar à esquerda</span></div>
+      <div><b>D / →</b> — <span data-i18n="start.turnRight">Virar à direita</span></div>
+      <div><b>C</b> — <span data-i18n="start.switchCamera">Trocar câmera</span></div>
+    </div>
+    <p class="touch-hint" data-i18n="start.touchHint">🕹️ Use os botões que aparecem na tela — ▲ acelera, ▼ freia/dá ré, ◀▶ vira. O botão 🎥 no rodapé troca a câmera.</p>
+    <button class="btn" id="startBtn" data-i18n="start.startBtn">Iniciar tour</button>
+  </div>
+</div>
+
+<!-- ===================== TELA DE RESULTADO ===================== -->
+<div id="resultScreen" class="overlay-screen hidden">
+  <div class="card">
+    <h1 data-i18n="result.title">Tour concluído!</h1>
+    <div class="overall-grade" id="overallGrade">—</div>
+    <div class="overall-label" data-i18n="result.overallLabel">Nota geral</div>
+    <div class="score-rows" id="scoreRows"></div>
+    <div class="coins" id="coinsEarned"></div>
+    <button class="btn" id="retryBtn" data-i18n="result.retryBtn">Rodar de novo</button>
+  </div>
+</div>
+
+<script src="js/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+/* =====================================================================
+   ROTA DO PORTFÓLIO — o tour de ônibus pelo meu portfólio
+   Estilos do HUD e das telas. A cena 3D é toda desenhada via Three.js
+   em js/game.js — aqui só vive a interface por cima do canvas.
+   ===================================================================== */
+
+@font-face {
+  font-family: 'Baloo 2';
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/baloo2.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/nunito.woff2') format('woff2');
+}
+
+:root{
+  /* paleta "tarde de verão na garagem, cidade acorda de noite" — painéis de
+     vidro escuro flutuando sobre uma cidade violeta, destaque na cor da
+     lataria do ônibus. As cores de cada exibição de projeto (--proj-*) são
+     definidas dinamicamente via JS a partir de PROJECT_THEMES. */
+  --hud-bg: rgba(14, 12, 22, 0.66);
+  --hud-border: rgba(255,255,255,0.14);
+  --text-main: #f5f7fb;
+  --text-dim: #b7b3cc;
+  --accent: #ffcf4d;   /* dourado da lataria — CTA, destaques, HUD principal */
+  --good: #4fd88a;     /* verde folha — suave/no alvo */
+  --warn: #ffb648;     /* âmbar — atenção */
+  --bad: #ff6b6b;       /* vermelho coral — brusco/colisão */
+  --portfolio-accent: #a855f7; /* violeta padrão do portfólio real */
+  --font-display: 'Baloo 2', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+}
+*{ box-sizing: border-box; }
+html, body{
+  margin:0; padding:0; width:100%; height:100%;
+  overflow:hidden;
+  background:#0b0716;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  user-select: none;
+}
+#canvasHost{ position:fixed; inset:0; }
+canvas{ display:block; width:100%; height:100%; touch-action:none; }
+
+.hud-panel{
+  position:absolute;
+  background: var(--hud-bg);
+  border: 1px solid var(--hud-border);
+  border-radius: 14px;
+  padding: 10px 14px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  pointer-events:none;
+}
+
+/* ---- Velocímetro ---- */
+#speedPanel{ left: 18px; bottom: 18px; width: 132px; text-align:center; }
+#speedValue{ font-family:var(--font-display); font-size:36px; font-weight:800; line-height:1; letter-spacing:0.5px; font-variant-numeric:tabular-nums; }
+#speedUnit{ font-size:12px; color: var(--text-dim); margin-top:2px; }
+#gearRpmRow{ display:flex; align-items:center; gap:7px; margin-top:8px; }
+#gearLabel{ font-family: var(--font-display); font-weight:800; font-size:14px; color: var(--text-dim); min-width:20px; text-align:left; }
+#rpmTrack{ flex:1; height:6px; border-radius:4px; background: rgba(255,255,255,0.12); overflow:hidden; border: 1px solid rgba(255,255,255,0.1); }
+#rpmFill{ height:100%; width:0%; background: var(--accent); transition: width 0.08s linear, background-color 0.15s linear; }
+
+/* ---- Próxima parada / exibição ---- */
+#stopPanel{ left: 18px; top: 18px; min-width: 240px; }
+#stopPanel .label{ font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; }
+#stopName{ font-family:var(--font-display); font-size:21px; font-weight:700; margin-top:2px; }
+#stopDistanceRow{ display:flex; align-items:baseline; gap:6px; margin-top:4px; }
+#stopDistance{ font-size: 22px; font-weight:700; color: var(--accent); font-variant-numeric:tabular-nums; }
+#stopArrow{
+  display:inline-block; margin-left:8px; width:0; height:0;
+  border-left: 7px solid transparent; border-right: 7px solid transparent;
+  border-bottom: 12px solid var(--accent);
+  transform-origin: 50% 65%; transition: transform 0.15s linear; vertical-align: middle;
+}
+#stopDots{ margin-top:8px; display:flex; gap:5px; flex-wrap:wrap; max-width:210px; }
+.stopDot{ width:9px; height:9px; border-radius:50%; background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.3); flex-shrink:0; }
+.stopDot.done{ background: var(--good); border-color: var(--good); }
+.stopDot.active{ background: var(--accent); border-color: var(--accent); box-shadow: 0 0 6px var(--accent); }
+
+/* ---- Passageiros ---- */
+#paxPanel{ right: 18px; top: 18px; text-align:right; min-width: 170px; }
+#paxPanel .label{ font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; }
+#paxAboard{ font-size: 26px; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+#paxWaiting{ font-size: 13px; color: var(--text-dim); margin-top:6px; }
+
+/* ---- Suavidade ---- */
+#smoothPanel{ right: 18px; bottom: 18px; width: 190px; }
+#smoothPanel .label{ font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+#smoothTrack{ width:100%; height:12px; border-radius:8px; background: rgba(255,255,255,0.12); overflow:hidden; border: 1px solid rgba(255,255,255,0.15); }
+#smoothFill{ height:100%; width:100%; background: var(--good); transition: width 0.12s linear, background-color 0.2s linear; }
+#smoothCaption{ font-size:11px; color: var(--text-dim); margin-top:6px; }
+
+/* ---- Timer ---- */
+#timerPanel{ left: 50%; top: 18px; transform: translateX(-50%); text-align:center; min-width:110px; }
+#timerPanel .label{ font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; }
+#timerValue{ font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; }
+
+/* ---- Mensagem de estação (feedback central curto) ---- */
+#stationMsg{
+  position:absolute; top: 90px; left:50%; transform: translateX(-50%);
+  font-size: 18px; font-weight:700;
+  background: rgba(14,12,22,0.75);
+  padding: 10px 22px; border-radius: 12px;
+  border: 1px solid var(--hud-border);
+  opacity:0; transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events:none; text-align:center; white-space: nowrap;
+}
+#stationMsg.show{ opacity:1; transform: translateX(-50%) translateY(6px); }
+
+/* ---- Prévia de aproximação (aparece antes de chegar na exibição) ---- */
+#approachPreview{
+  position:absolute; top: 96px; left:50%; transform: translateX(-50%) translateY(-8px);
+  display:flex; align-items:center; gap:10px;
+  background: rgba(14,12,22,0.7);
+  border: 1px solid var(--hud-border);
+  border-left: 3px solid var(--proj-accent, var(--portfolio-accent));
+  padding: 9px 18px 9px 14px; border-radius: 12px;
+  opacity:0; transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events:none;
+}
+#approachPreview.show{ opacity:1; transform: translateX(-50%) translateY(0); }
+#approachPreview .eyebrow{ font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-dim); }
+#approachPreview .name{ font-family:var(--font-display); font-weight:700; font-size:16px; color:var(--proj-accent, var(--portfolio-accent)); }
+
+/* ---- Alternar câmera (3ª pessoa / 1ª pessoa) ---- */
+#camToggleBtn{
+  left:50%; bottom: 18px; transform: translateX(-50%);
+  display:flex; align-items:center; gap:8px;
+  font-family: var(--font-body); font-size:13px; font-weight:700; color: var(--text-main);
+  appearance:none; -webkit-appearance:none; margin:0;
+  cursor:pointer; pointer-events:auto;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+#camToggleBtn:hover{ background: rgba(255,255,255,0.14); }
+#camToggleBtn:active{ transform: translateX(-50%) translateY(1px); }
+#camToggleBtn:focus-visible{ outline: 2px solid var(--accent); outline-offset:2px; }
+
+/* ---- Controles de toque (celular/tablet) — só aparecem em tela sensível
+   ao toque; simulam as mesmas teclas W/A/S/D, sem duplicar a física. ---- */
+#touchControls{ position:absolute; inset:0; pointer-events:none; display:none; }
+@media (pointer: coarse), (hover: none){
+  #touchControls{ display:block; }
+}
+.touch-pad{ position:absolute; bottom: 18px; display:flex; align-items:flex-end; gap:14px; pointer-events:auto; }
+#touchSteer{ left: 14px; }
+#touchDrive{ right: 14px; }
+.touch-btn{
+  width:60px; height:60px; border-radius:50%;
+  background: rgba(20,16,32,0.55); border:2px solid rgba(255,255,255,0.32);
+  color:#fff; font-size:24px; line-height:1;
+  display:flex; align-items:center; justify-content:center;
+  touch-action:none; -webkit-user-select:none; user-select:none;
+  transition: background-color 0.1s ease, border-color 0.1s ease;
+}
+.touch-btn.pressed{ background: rgba(255,207,77,0.4); border-color: var(--accent); }
+.touch-btn--gas{ width:72px; height:72px; font-size:28px; }
+
+/* ---- Flash de colisão ---- */
+#collisionFlash{
+  position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(ellipse at center, rgba(255,60,60,0) 45%, rgba(255,60,60,0.35) 100%);
+  opacity:0; transition: opacity 0.25s ease;
+}
+#collisionFlash.show{ opacity:1; }
+
+/* ---- Painel de revelação de projeto (o "prêmio" de cada parada) ---- */
+#projectReveal{
+  position:absolute; right: 24px; top: 50%; transform: translateY(-50%) translateX(24px);
+  width: min(400px, 90vw);
+  background: linear-gradient(165deg, rgba(20,16,32,0.94), rgba(12,10,20,0.94));
+  border: 1px solid var(--hud-border);
+  border-top: 3px solid var(--proj-accent, var(--portfolio-accent));
+  border-radius: 20px;
+  overflow:hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -20px var(--proj-accent, var(--portfolio-accent));
+  opacity:0; pointer-events:none;
+  transition: opacity 0.5s var(--ease,cubic-bezier(.16,1,.3,1)), transform 0.5s var(--ease,cubic-bezier(.16,1,.3,1));
+  z-index: 15;
+}
+#projectReveal.show{ opacity:1; transform: translateY(-50%) translateX(0); pointer-events:auto; }
+#projectReveal .reveal-media{ position:relative; width:100%; aspect-ratio: 16/8.3; overflow:hidden; background:#000; }
+#projectReveal .reveal-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+#projectReveal .reveal-media::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(12,10,20,0.96) 100%);
+}
+#projectReveal .reveal-eyebrow{
+  position:absolute; top:12px; left:14px; z-index:2;
+  font-size:10px; text-transform:uppercase; letter-spacing:1.5px;
+  color:#fff; background: var(--proj-accent, var(--portfolio-accent));
+  padding:4px 10px; border-radius:20px; font-weight:700;
+}
+#projectReveal .reveal-close{
+  position:absolute; top:10px; right:10px; z-index:2;
+  width:26px; height:26px; border-radius:50%; border:none;
+  background: rgba(0,0,0,0.45); color:#fff; font-size:14px; line-height:1;
+  cursor:pointer; pointer-events:auto;
+}
+#projectReveal .reveal-body{ padding: 16px 20px 20px; }
+#projectReveal h3{ font-family:var(--font-display); font-size:22px; margin:0 0 8px; color:#fff; text-wrap:balance; }
+#projectReveal p{ font-size:13.5px; line-height:1.55; color:var(--text-dim); margin:0 0 14px; }
+#projectReveal .reveal-techs{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+#projectReveal .tech-chip{
+  font-size:11px; font-weight:600; padding:4px 10px; border-radius:20px;
+  background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color: var(--text-main);
+}
+#projectReveal .reveal-links{ display:flex; gap:10px; }
+#projectReveal .reveal-links a{
+  flex:1; text-align:center; text-decoration:none; font-size:13px; font-weight:700;
+  padding:10px 12px; border-radius:10px; pointer-events:auto;
+  transition: transform 0.12s ease, filter 0.15s ease;
+}
+#projectReveal .reveal-links a.primary{ background: var(--proj-accent, var(--portfolio-accent)); color:#0b0716; }
+#projectReveal .reveal-links a.secondary{ background: rgba(255,255,255,0.08); color:var(--text-main); border:1px solid rgba(255,255,255,0.14); }
+#projectReveal .reveal-links a:hover{ filter:brightness(1.1); transform:translateY(-1px); }
+#projectReveal .reveal-score{
+  margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);
+  font-size:11px; color:var(--text-dim); display:flex; justify-content:space-between;
+}
+#projectReveal .reveal-score b{ color:#fff; font-family:var(--font-display); }
+
+/* ---- Telas de overlay (garagem / resultado) ---- */
+.overlay-screen{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(circle at 50% 30%, rgba(88,50,150,0.28), rgba(6,5,12,0.86) 65%);
+  backdrop-filter: blur(3px); z-index: 20;
+}
+.overlay-screen.hidden{ display:none; }
+.card{
+  background: #14101f; border: 1px solid rgba(255,255,255,0.1); border-radius: 18px;
+  padding: 34px 40px; max-width: 480px; width: 90%; text-align:center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.card h1{ margin:0 0 6px; font-size:30px; font-family:var(--font-display); font-weight:800; text-wrap:balance; }
+.card h2{ margin:0 0 18px; font-size: 15px; color: var(--text-dim); font-weight:400; }
+.card p.desc{ color: var(--text-dim); font-size: 14px; line-height:1.5; margin-bottom: 22px;}
+.controls-grid{
+  display:grid; grid-template-columns: 1fr 1fr; gap:8px 18px; text-align:left;
+  margin: 0 auto 24px; max-width: 340px; font-size: 13px; color: var(--text-dim);
+}
+.controls-grid b{ color: var(--text-main); }
+.touch-hint{ display:none; color: var(--text-dim); font-size:14px; margin: 0 0 24px; }
+@media (pointer: coarse), (hover: none){
+  .controls-grid{ display:none; }
+  .touch-hint{ display:block; }
+}
+.route-preview{ display:flex; justify-content:center; gap:7px; margin-bottom:24px; flex-wrap:wrap; }
+.route-preview .chip{
+  width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; color:#0b0716; font-family:var(--font-display);
+}
+.btn{
+  background: var(--accent); color:#26200a; border:none; font-size:16px; font-weight:700;
+  padding: 13px 30px; border-radius: 10px; cursor:pointer; pointer-events:auto;
+  transition: transform 0.1s ease, filter 0.15s ease;
+}
+.btn:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+.btn:active{ transform: translateY(1px); }
+.btn:focus-visible{ outline: 3px solid #fff; outline-offset: 2px; }
+
+.score-rows{ text-align:left; margin: 0 0 22px; }
+.score-row{ display:flex; justify-content:space-between; align-items:center; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.score-row:last-child{ border-bottom:none; }
+.score-row .name{ font-size:14px; color: var(--text-dim); }
+.score-row .bar-wrap{ flex:1; margin: 0 12px; height:8px; background: rgba(255,255,255,0.1); border-radius:6px; overflow:hidden; }
+.score-row .bar{ height:100%; border-radius:6px; }
+.score-row .val{ font-size:14px; font-weight:700; width:38px; text-align:right; font-variant-numeric:tabular-nums; }
+.overall-grade{ font-family:var(--font-display); font-size:56px; font-weight:800; margin:4px 0 2px; font-variant-numeric:tabular-nums; }
+.overall-label{ font-size:12px; color:var(--text-dim); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
+.coins{ font-size:13px; color: var(--accent); margin-bottom: 22px; }
+
+.hidden{ display:none !important; }
+
+/* ---- Telas pequenas: os mesmos cards, só menores e reposicionados pra não
+   ficar em cima dos controles de toque na parte de baixo da tela ---- */
+@media (max-width: 700px){
+  .hud-panel{ padding: 7px 10px; border-radius: 11px; }
+
+  #speedPanel{ left:10px; bottom: 96px; width: 92px; }
+  #speedValue{ font-size:26px; }
+  #speedUnit{ font-size:10px; }
+  #gearRpmRow{ margin-top:5px; gap:5px; }
+  #gearLabel{ font-size:12px; }
+  #rpmTrack{ height:5px; }
+
+  /* sobe pra cima da fileira dos controles de toque, senão fica espremido
+     entre os dois pads (virar e frear/acelerar) nas telas mais estreitas */
+  #camToggleBtn{ bottom: 96px; font-size:11px; padding: 6px 10px; gap:5px; }
+
+  #stopPanel{ left:10px; top:10px; min-width: 150px; max-width: 47vw; }
+  #stopPanel .label{ font-size:9px; }
+  #stopName{ font-size:15px; }
+  #stopDistance{ font-size:16px; }
+  #stopDots{ margin-top:6px; max-width:140px; }
+  .stopDot{ width:7px; height:7px; }
+
+  #paxPanel{ right:10px; top:10px; min-width: 110px; }
+  #paxPanel .label{ font-size:9px; }
+  #paxAboard{ font-size:18px; }
+  #paxWaiting{ font-size:10.5px; margin-top:4px; }
+
+  #smoothPanel{ right:10px; bottom: 96px; width: 118px; }
+  #smoothPanel .label{ font-size:9px; margin-bottom:4px; }
+  #smoothTrack{ height:9px; }
+  #smoothCaption{ font-size:9.5px; margin-top:4px; }
+
+  #timerPanel{ top:10px; min-width:70px; }
+  #timerPanel .label{ font-size:8.5px; }
+  #timerValue{ font-size:15px; }
+
+  #stationMsg{ top:152px; font-size:14px; padding:7px 14px; max-width:88vw; white-space:normal; }
+  #approachPreview{ top:152px; padding:6px 12px 6px 10px; }
+  #approachPreview .name{ font-size:13px; }
+
+  #projectReveal{
+    right:auto; left:50%; top:168px; transform: translateX(-50%);
+    width: 92vw; max-height: calc(100vh - 250px); overflow-y:auto;
+  }
+  #projectReveal.show{ transform: translateX(-50%); }
+  #projectReveal .reveal-media{ aspect-ratio: 16/9; }
+  #projectReveal .reveal-body{ padding: 12px 14px 14px; }
+  #projectReveal h3{ font-size:17px; }
+  #projectReveal p{ font-size:12px; margin-bottom:10px; }
+  #projectReveal .tech-chip{ font-size:10px; padding:3px 8px; }
+  #projectReveal .reveal-links{ gap:6px; }
+  #projectReveal .reveal-links a{ font-size:11.5px; padding:9px 6px; }
+  #projectReveal .reveal-score{ font-size:9.5px; }
+
+  .card{ padding: 22px 18px; }
+  .card h1{ font-size:23px; }
+  .card h2{ font-size:12.5px; }
+  .card p.desc{ font-size:12.5px; margin-bottom:16px; }
+  .overall-grade{ font-size:44px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+}

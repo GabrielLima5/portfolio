@@ -61,6 +61,7 @@
     <link rel="stylesheet" href="assets/css/sections/marquee.css" />
     <link rel="stylesheet" href="assets/css/sections/projects.css" />
     <link rel="stylesheet" href="assets/css/sections/flight-sim.css" />
+    <link rel="stylesheet" href="assets/css/sections/tour-3d.css" />
     <link rel="stylesheet" href="assets/css/sections/process.css" />
     <link rel="stylesheet" href="assets/css/sections/contact.css" />
     <link rel="stylesheet" href="assets/css/sections/footer.css" />
@@ -136,13 +137,18 @@
               >
             </li>
             <li>
+              <a href="#tour-3d" data-cursor="link"
+                ><span class="mono">04</span> <span data-i18n="nav.tour3d">Tour 3D</span></a
+              >
+            </li>
+            <li>
               <a href="#process" data-cursor="link"
-                ><span class="mono">04</span> <span data-i18n="nav.process">Processo</span></a
+                ><span class="mono">05</span> <span data-i18n="nav.process">Processo</span></a
               >
             </li>
             <li>
               <a href="#contacts" data-cursor="link"
-                ><span class="mono">05</span> <span data-i18n="nav.contact">Contato</span></a
+                ><span class="mono">06</span> <span data-i18n="nav.contact">Contato</span></a
               >
             </li>
           </ul>
@@ -283,10 +289,13 @@
             >
           </li>
           <li>
-            <a href="#process"><span class="mono">04</span> <span data-i18n="nav.process">Processo</span></a>
+            <a href="#tour-3d"><span class="mono">04</span> <span data-i18n="nav.tour3d">Tour 3D</span></a>
           </li>
           <li>
-            <a href="#contacts"><span class="mono">05</span> <span data-i18n="nav.contact">Contato</span></a>
+            <a href="#process"><span class="mono">05</span> <span data-i18n="nav.process">Processo</span></a>
+          </li>
+          <li>
+            <a href="#contacts"><span class="mono">06</span> <span data-i18n="nav.contact">Contato</span></a>
           </li>
         </ul>
       </nav>
@@ -363,6 +372,13 @@
         data-target="flight-sim"
         data-cursor="link"
         ><span class="dot"></span><span class="label mono" data-i18n="dotnav.flightsim">Pilotar</span></a
+      >
+      <a
+        href="#tour-3d"
+        class="dot-nav__item"
+        data-target="tour-3d"
+        data-cursor="link"
+        ><span class="dot"></span><span class="label mono" data-i18n="dotnav.tour3d">Tour 3D</span></a
       >
       <a
         href="#process"
@@ -875,50 +891,6 @@
               </div>
             </article>
 
-            <article
-              class="featured-project featured-project--reverse"
-              data-animate="fade-up"
-            >
-              <div class="featured-project__media tilt">
-                <img
-                  class="skeleton-img"
-                  src="assets/images/komape-screenshot.jpg"
-                  alt="Homepage KOMAPE Supermercados"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="featured-project__glow"></div>
-              </div>
-              <div class="featured-project__body">
-                <span class="tag" data-i18n="projects.featuredTag">Projeto em destaque</span>
-                <h3>KOMAPE Supermercados</h3>
-                <p data-i18n="projects.komapeDesc">
-                  Site institucional para a rede de supermercados KOMAPE, com
-                  apresentação da loja, depoimentos de clientes e pedidos
-                  direto pelo WhatsApp.
-                </p>
-                <div class="project-links">
-                  <a
-                    target="_blank"
-                    rel="noopener"
-                    href="https://github.com/GabrielLima5/komape"
-                    class="magnetic"
-                    data-cursor="link"
-                    ><i class="fa-brands fa-square-github"></i> <span data-i18n="projects.linkCode">Código</span></a
-                  >
-                  <a
-                    target="_blank"
-                    rel="noopener"
-                    href="https://komape.netlify.app/"
-                    class="magnetic"
-                    data-cursor="link"
-                    ><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="projects.linkLive">Ao
-                    vivo</span></a
-                  >
-                </div>
-              </div>
-            </article>
-
             <article class="featured-project" data-animate="fade-up">
               <div class="featured-project__media tilt">
                 <img
@@ -998,6 +970,95 @@
                     target="_blank"
                     rel="noopener"
                     href="https://secretwordgame.vercel.app/"
+                    class="magnetic"
+                    data-cursor="link"
+                    ><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="projects.linkLive">Ao
+                    vivo</span></a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="featured-project" data-animate="fade-up">
+              <div class="featured-project__media tilt">
+                <img
+                  class="skeleton-img"
+                  src="assets/images/voce-e-o-bug-screenshot.jpg"
+                  alt="Gameplay Você é o bug"
+                  data-i18n-attr="alt:projects.voceEoBugAlt"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="featured-project__glow"></div>
+              </div>
+              <div class="featured-project__body">
+                <span class="tag" data-i18n="projects.featuredTag">Projeto em destaque</span>
+                <h3 data-i18n="projects.voceEoBugTitle">Você é o bug</h3>
+                <p data-i18n="projects.voceEoBugDesc">
+                  Um platformer 2D experimental onde os "bugs" não são falhas
+                  — são a sua principal ferramenta de progressão. O próprio
+                  jogo percebe isso, e não gosta.
+                </p>
+                <div class="project-links">
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    href="https://github.com/GabrielLima5/voce-e-o-bug"
+                    class="magnetic"
+                    data-cursor="link"
+                    ><i class="fa-brands fa-square-github"></i> <span data-i18n="projects.linkCode">Código</span></a
+                  >
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    href="https://voce-e-o-bug.netlify.app/"
+                    class="magnetic"
+                    data-cursor="link"
+                    ><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="projects.linkLive">Ao
+                    vivo</span></a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="featured-project featured-project--reverse"
+              data-animate="fade-up"
+            >
+              <div class="featured-project__media tilt">
+                <img
+                  class="skeleton-img"
+                  src="assets/images/numero-proibido-screenshot.jpg"
+                  alt="Gameplay Número Proibido"
+                  data-i18n-attr="alt:projects.numeroProibidoAlt"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="featured-project__glow"></div>
+              </div>
+              <div class="featured-project__body">
+                <span class="tag" data-i18n="projects.featuredTag">Projeto em destaque</span>
+                <h3 data-i18n="projects.numeroProibidoTitle">Número Proibido</h3>
+                <p data-i18n="projects.numeroProibidoDesc">
+                  Jogo de puzzle web onde a regra do tabuleiro nunca é
+                  revelada. O jogador começa em uma célula e precisa chegar
+                  até a saída, mas alguns números são "perigosos" segundo uma
+                  regra secreta — descoberta apenas observando o que
+                  acontece a cada passo.
+                </p>
+                <div class="project-links">
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    href="https://github.com/GabrielLima5/numero-proibido"
+                    class="magnetic"
+                    data-cursor="link"
+                    ><i class="fa-brands fa-square-github"></i> <span data-i18n="projects.linkCode">Código</span></a
+                  >
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    href="https://numero-proibido.vercel.app/"
                     class="magnetic"
                     data-cursor="link"
                     ><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="projects.linkLive">Ao
@@ -1351,11 +1412,82 @@
         </div>
       </section>
 
+      <!-- ============ BUS TOUR 3D (portfolio tour, easter egg) ============ -->
+      <section id="tour-3d" class="tour-3d">
+        <div class="container">
+          <p class="section-label mono" data-animate="fade-up" data-i18n="tour3d.label">
+            // 04 — Tour 3D
+          </p>
+          <h2 class="section-title" data-reveal="words" data-i18n="tour3d.title" data-i18n-html>
+            Prefere rodar pela <span class="text-gradient">cidade?</span>
+          </h2>
+          <p class="section-sub" data-animate="fade-up" data-i18n="tour3d.sub">
+            Um simulador de ônibus em 3D que dobra como tour guiado pelo
+            portfólio: dirija pela cidade e encontre, em cada cruzamento, um
+            projeto real deste site — screenshot, descrição, tecnologias e
+            links pro código e pro site ao vivo.
+          </p>
+
+          <div class="tour3d-box glass" data-animate="scale">
+            <div class="tour3d-visual" aria-hidden="true">
+              <div class="tour3d-sky">
+                <span class="tour3d-star" style="--x: 12%; --y: 20%; --d: 0.2s"></span>
+                <span class="tour3d-star" style="--x: 28%; --y: 12%; --d: 0.8s"></span>
+                <span class="tour3d-star" style="--x: 82%; --y: 24%; --d: 1.3s"></span>
+                <span class="tour3d-star" style="--x: 68%; --y: 10%; --d: 0.5s"></span>
+              </div>
+              <div class="tour3d-road">
+                <span class="tour3d-road-center"></span>
+              </div>
+              <div class="tour3d-bus"><i class="fa-solid fa-bus-simple"></i></div>
+              <div class="tour3d-pin tour3d-pin--1"><i class="fa-brands fa-react"></i></div>
+              <div class="tour3d-pin tour3d-pin--2"><i class="fa-brands fa-node-js"></i></div>
+              <div class="tour3d-pin tour3d-pin--3"><i class="fa-brands fa-html5"></i></div>
+            </div>
+
+            <div class="tour3d-panel">
+              <span class="tag" data-i18n="tour3d.tag">Easter egg</span>
+              <ul class="tour3d-features">
+                <li>
+                  <i class="fa-solid fa-signs-post"></i>
+                  <span data-i18n="tour3d.feat1">7 projetos, um por cruzamento</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-cube"></i>
+                  <span data-i18n="tour3d.feat2">Three.js — física escrita à mão, sem game engine</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-mobile-screen-button"></i>
+                  <span data-i18n="tour3d.feat3">Funciona no teclado, mouse ou toque</span>
+                </li>
+              </ul>
+              <a
+                class="btn btn--primary magnetic"
+                href="bus-simulator/index.html"
+                target="_blank"
+                rel="noopener"
+                data-cursor="link"
+              >
+                <span data-i18n="tour3d.start">Embarcar no tour</span>
+                <i class="fa-solid fa-bus"></i>
+              </a>
+              <p class="tour3d-hint mono" data-i18n="tour3d.hint">
+                Abre em uma nova aba — W/↑ acelera, A/D vira, mouse orbita a câmera.
+              </p>
+            </div>
+          </div>
+
+          <p class="tour3d-footnote mono" data-i18n="tour3d.footnote">
+            // construído com Three.js — sem physics engine, tudo escrito à mão.
+          </p>
+        </div>
+      </section>
+
       <!-- ============ PROCESS ============ -->
       <section id="process" class="process">
         <div class="container">
           <p class="section-label mono" data-animate="fade-up" data-i18n="process.label">
-            // 04 — Como eu trabalho
+            // 05 — Como eu trabalho
           </p>
           <h2 class="section-title" data-reveal="words" data-i18n="process.title" data-i18n-html>
             Do brief ao deploy, <span class="text-gradient">sem ruído.</span>
@@ -1419,7 +1551,7 @@
       <section id="contacts" class="contacts">
         <div class="container">
           <p class="section-label mono" data-animate="fade-up" data-i18n="contact.label">
-            // 05 — Contato
+            // 06 — Contato
           </p>
           <h2 class="section-title contacts__title" data-reveal="words" data-i18n="contact.title" data-i18n-html>
             Vamos construir o

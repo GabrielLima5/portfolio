@@ -1,0 +1,94 @@
+/* ==========================================================================
+   BUS TOUR 3D (easter egg) — decorative CSS preview card that links out to
+   the standalone Three.js portfolio-tour game (bus-simulator/index.html).
+   The game itself is a separate page (own Three.js scene, own game loop),
+   opened in a new tab — kept out of this page's DOM on purpose, so it
+   never competes with GSAP/ScrollTrigger or the flight-sim canvas here.
+   ========================================================================== */
+
+.tour-3d { position: relative; z-index: var(--z-content); padding: var(--section-py) 0; }
+
+.tour3d-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+/* --- decorative visual (no game logic, just a lightweight CSS scene) --- */
+.tour3d-visual {
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient(180deg, #05060a 0%, #0a0c1c 55%, rgba(var(--accent-rgb), .22) 100%);
+}
+.tour3d-sky { position: absolute; inset: 0; }
+.tour3d-star {
+    position: absolute; left: var(--x); top: var(--y);
+    width: 3px; height: 3px; border-radius: 50%; background: #fff; opacity: .3;
+    animation: tour3dTwinkle 2.6s ease-in-out infinite;
+    animation-delay: var(--d);
+}
+@keyframes tour3dTwinkle { 0%, 100% { opacity: .15; } 50% { opacity: .9; } }
+
+.tour3d-road {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 46%;
+    background: linear-gradient(180deg, #14161f, #05060a);
+    border-top: 1px solid rgba(255,255,255,.08);
+}
+.tour3d-road-center {
+    position: absolute; left: 0; right: 0; top: 50%; height: 4px; transform: translateY(-50%);
+    background-image: repeating-linear-gradient(to right, rgba(255,255,255,.7) 0 26px, transparent 26px 54px);
+    animation: tour3dRoadMove 1.1s linear infinite;
+}
+@keyframes tour3dRoadMove { to { background-position-x: -80px; } }
+
+.tour3d-bus {
+    position: absolute; bottom: 18%; left: 50%; translate: -50% 0;
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+    color: var(--text);
+    filter: drop-shadow(0 0 14px rgba(var(--accent-rgb), .6));
+    animation: tour3dBusBob 2.2s ease-in-out infinite;
+    z-index: 2;
+}
+@keyframes tour3dBusBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+.tour3d-pin {
+    position: absolute;
+    display: grid; place-items: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(var(--accent-rgb), .16);
+    border: 1px solid rgba(var(--accent-rgb), .4);
+    color: var(--accent);
+    font-size: .95rem;
+    animation: tour3dPinFloat 3.4s ease-in-out infinite;
+}
+.tour3d-pin--1 { top: 18%; left: 14%; animation-delay: 0s; }
+.tour3d-pin--2 { top: 30%; left: 78%; animation-delay: .6s; }
+.tour3d-pin--3 { top: 12%; left: 48%; animation-delay: 1.2s; }
+@keyframes tour3dPinFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* --- copy + CTA panel --- */
+.tour3d-panel {
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    display: flex; flex-direction: column; gap: 1.1rem; align-items: flex-start;
+}
+.tour3d-panel .tag { margin-bottom: 0; }
+
+.tour3d-features { display: flex; flex-direction: column; gap: .55rem; list-style: none; }
+.tour3d-features li { display: flex; align-items: center; gap: .6rem; font-size: .92rem; color: var(--text-dim); }
+.tour3d-features i { color: var(--accent); width: 1.1em; text-align: center; }
+
+.tour3d-hint { font-size: .72rem; color: var(--text-faint); }
+
+.tour3d-footnote { text-align: center; color: var(--text-faint); font-size: .72rem; margin-top: 1rem; }
+
+@media (max-width: 760px) {
+    .tour3d-box { grid-template-columns: 1fr; }
+    .tour3d-visual { min-height: 200px; }
+}

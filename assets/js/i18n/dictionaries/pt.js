@@ -26,6 +26,7 @@ export default {
         projects: 'Projetos',
         flightsim: 'Pilotar',
         flightsimBadge: 'novo',
+        tour3d: 'Tour 3D',
         process: 'Processo',
         contact: 'Contato',
         downloadCv: 'Baixar CV'
@@ -36,6 +37,7 @@ export default {
         about: 'Sobre',
         projects: 'Projetos',
         flightsim: 'Pilotar',
+        tour3d: 'Tour 3D',
         process: 'Processo',
         contact: 'Contato'
     },
@@ -110,9 +112,14 @@ export default {
         // below); Movies Library and Help Desk were dropped from the site
         // entirely per Gabriel's updated project list.
         halptecDesc: 'Uma landing page responsiva para a empresa HALPTEC Elétrica, desenvolvida utilizando HTML, CSS e JavaScript.',
-        komapeDesc: 'Site institucional para a rede de supermercados KOMAPE, com apresentação da loja, depoimentos de clientes e pedidos direto pelo WhatsApp.',
         cleomoveisDesc: 'Site institucional para a loja de móveis Cléo Móveis, apresentando o catálogo e os canais de contato da loja.',
         secretWordDesc: 'Pequeno jogo de acertar palavras, um projeto que criei com React durante meu aprendizado da tecnologia.',
+        voceEoBugTitle: 'Você é o bug',
+        voceEoBugDesc: 'Um platformer 2D experimental onde os "bugs" não são falhas — são a sua principal ferramenta de progressão. O próprio jogo percebe isso, e não gosta.',
+        voceEoBugAlt: 'Gameplay Você é o bug',
+        numeroProibidoTitle: 'Número Proibido',
+        numeroProibidoDesc: 'Jogo de puzzle web onde a regra do tabuleiro nunca é revelada. O jogador começa em uma célula e precisa chegar até a saída, mas alguns números são "perigosos" segundo uma regra secreta — descoberta apenas observando o que acontece a cada passo.',
+        numeroProibidoAlt: 'Gameplay Número Proibido',
 
         other: {
             'clima-atual': { title: 'Clima Atual', desc: 'Uma aplicação onde o usuário insere o nome de sua cidade e recebe informações sobre o clima local.' },
@@ -141,8 +148,21 @@ export default {
         footnote: '// easter egg construído em canvas puro — sem bibliotecas de jogo.'
     },
 
+    tour3d: {
+        label: '// 04 — Tour 3D',
+        title: 'Prefere rodar pela <span class="text-gradient">cidade?</span>',
+        sub: 'Um simulador de ônibus em 3D que dobra como tour guiado pelo portfólio: dirija pela cidade e encontre, em cada cruzamento, um projeto real deste site — screenshot, descrição, tecnologias e links pro código e pro site ao vivo.',
+        tag: 'Easter egg',
+        feat1: '7 projetos, um por cruzamento',
+        feat2: 'Three.js — física escrita à mão, sem game engine',
+        feat3: 'Funciona no teclado, mouse ou toque',
+        start: 'Embarcar no tour',
+        hint: 'Abre em uma nova aba — W/↑ acelera, A/D vira, mouse orbita a câmera.',
+        footnote: '// construído com Three.js — sem physics engine, tudo escrito à mão.'
+    },
+
     process: {
-        label: '// 04 — Como eu trabalho',
+        label: '// 05 — Como eu trabalho',
         title: 'Do brief ao deploy, <span class="text-gradient">sem ruído.</span>',
         step1Title: 'Descoberta',
         step1Desc: 'Entendo o problema antes de abrir o editor de código. Sem isso, qualquer linha escrita é aposta.',
@@ -155,7 +175,7 @@ export default {
     },
 
     contact: {
-        label: '// 05 — Contato',
+        label: '// 06 — Contato',
         title: 'Vamos construir o <span class="text-gradient">próximo projeto</span> incrível?',
         sub: 'Estou disponível para novas oportunidades, freelas ou só para trocar uma ideia sobre tecnologia.',
         emailLabel: 'Email',

@@ -22,6 +22,7 @@ export default {
         projects: 'Projects',
         flightsim: 'Fly',
         flightsimBadge: 'new',
+        tour3d: '3D Tour',
         process: 'Process',
         contact: 'Contact',
         downloadCv: 'Download CV'
@@ -32,6 +33,7 @@ export default {
         about: 'About',
         projects: 'Projects',
         flightsim: 'Fly',
+        tour3d: '3D Tour',
         process: 'Process',
         contact: 'Contact'
     },
@@ -103,9 +105,14 @@ export default {
         // below); Movies Library and Help Desk were dropped from the site
         // entirely per Gabriel's updated project list.
         halptecDesc: 'A responsive landing page for the HALPTEC Elétrica company, built with HTML, CSS and JavaScript.',
-        komapeDesc: 'Institutional website for the KOMAPE supermarket chain, showcasing the store, customer testimonials, and WhatsApp ordering.',
         cleomoveisDesc: 'Institutional website for the Cléo Móveis furniture store, presenting its catalog and contact channels.',
         secretWordDesc: 'A small word-guessing game, a project I built with React while learning the technology.',
+        voceEoBugTitle: 'You are the glitch',
+        voceEoBugDesc: "An experimental 2D platformer where bugs aren't flaws — they're your main tool for progress. The game itself has noticed, and it isn't happy about it.",
+        voceEoBugAlt: 'You are the glitch gameplay',
+        numeroProibidoTitle: 'Forbidden Number',
+        numeroProibidoDesc: "A web puzzle game where the board's rule is never revealed. You start on one cell and need to reach the exit, but some numbers are \"dangerous\" under a secret rule — one you can only uncover by watching what happens at each step.",
+        numeroProibidoAlt: 'Forbidden Number gameplay',
 
         other: {
             'clima-atual': { title: 'Current Weather', desc: 'An app where the user enters their city name and gets local weather information back.' },
@@ -134,8 +141,21 @@ export default {
         footnote: '// easter egg built in pure canvas — no game libraries.'
     },
 
+    tour3d: {
+        label: '// 04 — 3D Tour',
+        title: 'Prefer cruising the <span class="text-gradient">city?</span>',
+        sub: 'A 3D bus-driving simulator that doubles as a guided portfolio tour: drive through the city and find, at every intersection, a real project from this site — screenshot, description, tech stack and links to the code and the live site.',
+        tag: 'Easter egg',
+        feat1: '7 projects, one per intersection',
+        feat2: 'Three.js — hand-written physics, no game engine',
+        feat3: 'Works with keyboard, mouse or touch',
+        start: 'Board the tour',
+        hint: 'Opens in a new tab — W/↑ accelerates, A/D steers, mouse orbits the camera.',
+        footnote: '// built with Three.js — no physics engine, all hand-written.'
+    },
+
     process: {
-        label: '// 04 — How I work',
+        label: '// 05 — How I work',
         title: 'From brief to deploy, <span class="text-gradient">no noise.</span>',
         step1Title: 'Discovery',
         step1Desc: "I understand the problem before opening the code editor. Without that, every line written is a gamble.",
@@ -148,7 +168,7 @@ export default {
     },
 
     contact: {
-        label: '// 05 — Contact',
+        label: '// 06 — Contact',
         title: 'Shall we build the <span class="text-gradient">next project</span> together?',
         sub: "I'm available for new opportunities, freelance work, or just to talk tech.",
         emailLabel: 'Email',
