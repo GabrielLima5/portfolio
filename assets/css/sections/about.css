@@ -1,0 +1,79 @@
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+
+.about { position: relative; z-index: var(--z-content); padding: var(--section-py) 0; }
+.about__grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 6vw, 4rem); margin-top: 2.5rem; }
+@media (max-width: 900px) { .about__grid { grid-template-columns: 1fr; } }
+
+.about__text p { color: var(--text-dim); margin-bottom: 1.1rem; max-width: 60ch; }
+.about__text strong { color: var(--text); }
+
+.pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: .3rem 0 .3rem 1.3rem;
+    font-family: var(--font-display); font-size: 1.25rem;
+    color: var(--text); margin: 1.8rem 0 2rem;
+}
+
+.philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 700px) { .philosophy-grid { grid-template-columns: 1fr; } }
+.philosophy-card {
+    position: relative; overflow: hidden;
+    padding: 1.4rem; border-radius: var(--radius-md);
+    background: var(--panel); border: 1px solid var(--border);
+    transition: border-color .3s, transform .3s var(--ease-soft);
+}
+.philosophy-card:hover { border-color: rgba(var(--accent-rgb), .45); }
+.philosophy-card i { color: var(--accent); font-size: 1.3rem; margin-bottom: .7rem; display: block; }
+.philosophy-card h3 { font-size: 1rem; margin-bottom: .4rem; }
+.philosophy-card p { font-size: .86rem; color: var(--text-dim); }
+
+.about__side { display: flex; flex-direction: column; gap: 2.2rem; }
+
+/* the photo floats directly on the dark page — no card behind it, just a
+   soft accent glow and drop-shadow for grounding (the source PNG is truly
+   transparent, so there's nothing to "frame" here). */
+.about-photo {
+    position: relative;
+    max-width: 300px; margin-inline: auto;
+    transition: transform .4s var(--ease-soft);
+}
+.about-photo:hover { transform: translateY(-6px); }
+.about-photo__glow {
+    /* modest inset, not clipped by an overflow:hidden ancestor (the tilt/hover
+       effect on .about-photo needs the glow to bleed past the photo edge) — kept
+       small enough that it doesn't inflate scrollWidth on narrow viewports */
+    position: absolute; inset: -8%;
+    background: radial-gradient(ellipse 60% 55% at 50% 38%, rgba(var(--accent-rgb), .32), transparent 70%);
+    filter: blur(24px);
+    z-index: -1;
+}
+.about-photo img {
+    /* explicit height: auto — without it, the img's HTML width/height
+       attributes (added for the browser's layout-shift hint) win over the
+       intrinsic aspect ratio once CSS constrains width alone, stretching
+       the image to a literal 1122px tall box instead of scaling down. */
+    width: 100%; height: auto; display: block;
+    filter: drop-shadow(0 22px 34px rgba(0,0,0,.55));
+}
+.about-photo__tag {
+    display: block; text-align: center;
+    margin-top: .9rem;
+    font-size: .62rem; color: var(--text-faint); letter-spacing: .02em;
+}
+
+.tech-panel { padding: 1.6rem; border-radius: var(--radius-md); background: var(--panel); border: 1px solid var(--border); }
+.tech-panel__label { display: block; font-size: .7rem; color: var(--text-faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; }
+.tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+.tech-chip {
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; gap: .55rem;
+    padding: .6rem .75rem; border-radius: var(--radius-sm);
+    background: rgba(255,255,255,.03); border: 1px solid var(--border-soft);
+    font-size: .84rem;
+    transition: transform .3s var(--ease-soft), border-color .3s, background .3s;
+}
+.tech-chip:hover { transform: translateY(-3px); border-color: rgba(var(--accent-rgb), .4); background: rgba(255,255,255,.05); }
+.tech-chip i { font-size: 1.05rem; width: 18px; text-align: center; }
+.tech-chip img { width: 16px; height: 16px; }

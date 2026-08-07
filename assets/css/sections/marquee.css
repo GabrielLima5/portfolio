@@ -1,0 +1,17 @@
+/* ==========================================================================
+   STACK MARQUEE — the infinite-scrolling tech strip between About and
+   Projects.
+   ========================================================================== */
+
+.marquee-section { position: relative; z-index: var(--z-content); padding: 3rem 0; border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); overflow: hidden; }
+.marquee-section__label { text-align: center; font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 1.6rem; }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }
+.marquee__track { display: flex; gap: 2.6rem; width: max-content; animation: marqueeScroll 34s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__item {
+    display: flex; align-items: center; gap: .6rem;
+    font-family: var(--font-mono); font-size: 1rem; color: var(--text-dim);
+    white-space: nowrap;
+}
+.marquee__item i, .marquee__item img { font-size: 1.3rem; color: var(--accent); width: 20px; height: 20px; }
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }

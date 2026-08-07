@@ -1,0 +1,26 @@
+/* ==========================================================================
+   The static "not yet revealed" baseline for the [data-animate] /
+   [data-reveal="words"] system. GSAP + ScrollTrigger (js/modules/reveal.js)
+   owns the actual tweening — CSS only sets the initial hidden state so
+   content doesn't flash visible before JS attaches.
+   ========================================================================== */
+
+[data-animate] { opacity: 0; will-change: transform, opacity; }
+[data-animate="fade-up"] { transform: translateY(38px); }
+[data-animate="fade-left"] { transform: translateX(46px); }
+[data-animate="fade-right"] { transform: translateX(-46px); }
+[data-animate="scale"] { transform: scale(.9); }
+
+/* on narrow viewports the pre-reveal translateX can visually push an
+   already-tight-fitting element past the edge of the screen (Chromium counts
+   a transformed element's painted position toward scrollable overflow) — a
+   smaller offset keeps the same "slide in" effect without ever risking that. */
+@media (max-width: 640px) {
+    [data-animate="fade-left"] { transform: translateX(20px); }
+    [data-animate="fade-right"] { transform: translateX(-20px); }
+}
+
+/* the heading stays hidden until js/utils/split-text.js has wrapped it into
+   words — at that point the container is unhidden and the words themselves
+   (.reveal-word, in base/utilities.css) animate in individually */
+[data-reveal="words"] { opacity: 0; }

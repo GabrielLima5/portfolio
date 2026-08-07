@@ -1,0 +1,12 @@
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer { position: relative; z-index: var(--z-content); border-top: 1px solid var(--border-soft); padding: 2.6rem 0; }
+.site-footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.site-footer__brand { display: flex; align-items: center; gap: 1rem; }
+.site-footer__brand p { color: var(--text-faint); font-size: .82rem; }
+.site-footer__socials { display: flex; gap: 1.1rem; font-size: 1.1rem; color: var(--text-dim); }
+.site-footer__socials a:hover { color: var(--accent); }
+.site-footer__copy { font-size: .72rem; color: var(--text-faint); }
+@media (max-width: 700px) { .site-footer__inner { justify-content: center; text-align: center; } }

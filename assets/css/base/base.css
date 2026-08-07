@@ -1,0 +1,49 @@
+/* ==========================================================================
+   BASE — unclassed element defaults + the handful of structural helpers
+   almost every page uses (container, skip-link, hide).
+   ========================================================================== */
+
+html, body { background: var(--bg); }
+html {
+    /* belt-and-suspenders alongside body's overflow-x: hidden below — a few
+       decorative elements (orbit/glow bleeds) sit in normal flow with no
+       clipping ancestor, so guarding both box roots keeps them from ever
+       opening real horizontal scroll room on narrow viewports. */
+    overflow-x: hidden;
+}
+body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+body.no-scroll { overflow: hidden; }
+
+.mono { font-family: var(--font-mono); }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -.01em; line-height: 1.1; }
+
+::selection { background: var(--accent); color: #05060a; }
+
+/* custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--accent), var(--accent-3)); border-radius: 10px; }
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--accent); color: #05060a; padding: .6rem 1rem; z-index: 2000;
+}
+.skip-link:focus { left: 1rem; top: 1rem; }
+
+.container { max-width: var(--container); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
+
+.hide { display: none !important; }

@@ -1,0 +1,90 @@
+/* ==========================================================================
+   PROJECTS — featured project showcase, search box, and the filterable
+   "other projects" grid (js/modules/projects.js drives show-more/search).
+   ========================================================================== */
+
+.projects { position: relative; z-index: var(--z-content); padding: var(--section-py) 0; }
+
+.featured-projects { display: flex; flex-direction: column; gap: clamp(3rem, 6vw, 5rem); margin-top: 3rem; margin-bottom: 5.5rem; }
+.featured-project {
+    display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+}
+.featured-project--reverse { direction: rtl; }
+.featured-project--reverse > * { direction: ltr; }
+@media (max-width: 900px) {
+    .featured-project, .featured-project--reverse { grid-template-columns: 1fr; direction: ltr; }
+}
+
+.featured-project__media { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); transform-style: preserve-3d; }
+.featured-project__media img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform .5s var(--ease-soft); }
+.featured-project__media:hover img { transform: scale(1.04); }
+.featured-project__glow { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.55)); pointer-events: none; }
+
+/* fallback tile for projects without a screenshot on hand yet — an icon on a
+   soft gradient instead of leaving the media slot awkwardly empty. */
+.featured-project__media--placeholder {
+    aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;
+    background:
+        radial-gradient(circle at 28% 24%, rgba(var(--accent-rgb), .35), transparent 60%),
+        var(--panel-strong);
+}
+.featured-project__media--placeholder i { font-size: clamp(3rem, 6vw, 4.5rem); color: var(--accent); opacity: .85; }
+
+.featured-project__body .tag { display: inline-block; }
+.featured-project__body h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: .8rem; }
+.featured-project__body p { color: var(--text-dim); margin-bottom: 1.4rem; max-width: 52ch; }
+
+.used-techs { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.tech-pill {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .78rem; padding: .35rem .7rem; border-radius: 100px;
+    background: var(--panel); border: 1px solid var(--border-soft); color: var(--text-dim);
+}
+.tech-pill i { color: var(--accent); }
+
+.project-links { display: flex; gap: 1.4rem; }
+.project-links a { display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; color: var(--text); border-bottom: 1px solid transparent; transition: border-color .3s, color .3s; }
+.project-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+.other-projects-head { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.other-projects-head .section-label { margin-bottom: 0; }
+
+.search-box { position: relative; min-width: 280px; flex: 1; max-width: 380px; }
+.search-box i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-faint); font-size: .85rem; }
+.project-input {
+    width: 100%; padding: .75rem 1rem .75rem 2.4rem; border-radius: 100px;
+    background: var(--panel); border: 1px solid var(--border); color: var(--text);
+    transition: border-color .3s, box-shadow .3s;
+}
+.project-input::placeholder { color: var(--text-faint); }
+.project-input:focus { border-color: rgba(var(--accent-rgb), .6); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .15); outline: none; }
+
+.other-projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+@media (max-width: 980px) { .other-projects { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .other-projects { grid-template-columns: 1fr; } }
+
+.proj-card {
+    position: relative; overflow: hidden;
+    padding: 1.5rem; border-radius: var(--radius-md);
+    background: var(--panel); border: 1px solid var(--border-soft);
+    display: flex; flex-direction: column;
+    transition: transform .35s var(--ease-soft), border-color .35s, background .35s;
+}
+.proj-card:hover { transform: translateY(-6px); border-color: rgba(var(--accent-rgb), .4); background: var(--panel-strong); }
+.proj-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.proj-card__top > i { color: var(--accent); font-size: 1.1rem; }
+.proj-card__links { display: flex; gap: .8rem; color: var(--text-dim); }
+.proj-card__links a:hover { color: var(--accent); }
+.proj-card h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+.proj-card__type {
+    display: inline-block; font-size: .66rem; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--accent-2); margin-bottom: .7rem;
+}
+.proj-card p { font-size: .86rem; color: var(--text-dim); margin-bottom: 1.1rem; flex-grow: 1; }
+.proj-card__techs { display: flex; gap: .5rem; flex-wrap: wrap; }
+.proj-card__techs .tech { font-size: .68rem; padding: .25rem .6rem; border-radius: 100px; background: rgba(255,255,255,.05); color: var(--text-dim); border: 1px solid var(--border-soft); }
+
+.no-results { text-align: center; color: var(--text-faint); margin-top: 2rem; }
+
+.show-more-wrap { display: flex; justify-content: center; margin-top: 2.6rem; }

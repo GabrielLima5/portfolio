@@ -1,0 +1,30 @@
+/* ==========================================================================
+   DOT NAV — fixed side rail that highlights the active section
+   (js/modules/dot-nav.js). Hidden below 1080px in favor of the hamburger.
+   ========================================================================== */
+
+.dot-nav {
+    position: fixed; right: clamp(1rem, 3vw, 2.5rem); top: 50%;
+    transform: translateY(-50%);
+    z-index: 400;
+    display: flex; flex-direction: column; gap: 1.4rem;
+    align-items: flex-end;
+}
+.dot-nav__item { display: flex; align-items: center; gap: .7rem; }
+.dot-nav__item .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--text-faint);
+    transition: background .3s, transform .3s, box-shadow .3s;
+}
+.dot-nav__item .label {
+    font-size: .68rem; color: var(--text-faint); letter-spacing: .08em;
+    opacity: 0; transform: translateX(6px);
+    transition: opacity .25s, transform .25s;
+}
+.dot-nav__item:hover .label { opacity: 1; transform: translateX(0); color: var(--text-dim); }
+.dot-nav__item:hover .dot, .dot-nav__item.is-active .dot {
+    background: var(--accent); transform: scale(1.5);
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), .8);
+}
+.dot-nav__item.is-active .label { opacity: 1; color: var(--accent); }
+@media (max-width: 1080px) { .dot-nav { display: none; } }

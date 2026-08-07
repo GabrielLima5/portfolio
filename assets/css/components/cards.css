@@ -1,0 +1,55 @@
+/* ==========================================================================
+   LIVING CARDS — shared hover treatment for every card-like surface: a
+   cursor-tracked sheen (position set by js/modules/pointer-effects.js), a
+   diagonal shine sweep, a luminous accent-tinted glow ring, and a shadow
+   that deepens on hover. One selector list so every card type — project,
+   philosophy, timeline, contact, tech chip, featured-project media — reads
+   as the same living material rather than N one-off components.
+   ========================================================================== */
+
+:is(.proj-card, .philosophy-card, .timeline__card, .contact-box, .tech-chip, .featured-project__media) {
+    box-shadow: var(--shadow-sm);
+    transition: transform .4s var(--ease-soft), border-color .4s, box-shadow .45s var(--ease-soft);
+}
+:is(.proj-card, .philosophy-card, .timeline__card, .contact-box, .featured-project__media):hover {
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(var(--accent-rgb), .2);
+}
+
+/* cursor-tracked soft highlight */
+.proj-card::after, .philosophy-card::after, .timeline__card::after,
+.contact-box::after, .tech-chip::after, .featured-project__media::after {
+    content: '';
+    position: absolute; inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle 220px at var(--mx-local, 50%) var(--my-local, 50%), rgba(255,255,255,.14), transparent 65%);
+    opacity: 0;
+    transition: opacity .4s;
+    mix-blend-mode: plus-lighter;
+}
+.proj-card:hover::after, .philosophy-card:hover::after, .timeline__card:hover::after,
+.contact-box:hover::after, .tech-chip:hover::after, .featured-project__media:hover::after {
+    opacity: 1;
+}
+
+/* diagonal shine sweep — a bright band that travels across the surface once on hover */
+.proj-card::before, .philosophy-card::before, .timeline__card::before, .contact-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.14) 49%, rgba(255,255,255,.04) 55%, transparent 62%);
+    background-size: 250% 250%;
+    background-position: -40% -40%;
+    opacity: 0;
+}
+.proj-card:hover::before, .philosophy-card:hover::before, .timeline__card:hover::before, .contact-box:hover::before {
+    opacity: 1;
+    animation: shineSweep 1s ease forwards;
+}
+@keyframes shineSweep {
+    from { background-position: -40% -40%; }
+    to { background-position: 70% 70%; }
+}

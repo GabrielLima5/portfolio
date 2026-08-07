@@ -1,0 +1,25 @@
+/* ==========================================================================
+   PROCESS / TIMELINE
+   ========================================================================== */
+
+.process { position: relative; z-index: var(--z-content); padding: var(--section-py) 0; }
+.timeline { position: relative; margin-top: 3rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.timeline__line { position: absolute; top: 1.15rem; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+@media (max-width: 900px) { .timeline { grid-template-columns: 1fr; } .timeline__line { display: none; } }
+
+.timeline__step { position: relative; display: flex; flex-direction: column; gap: 1rem; }
+.timeline__num {
+    font-size: .85rem; color: var(--accent); background: var(--bg);
+    align-self: flex-start; padding-right: .6rem;
+}
+.timeline__card {
+    position: relative; overflow: hidden;
+    padding: 1.6rem; border-radius: var(--radius-md);
+    background: var(--panel); border: 1px solid var(--border-soft);
+    transition: transform .35s var(--ease-soft), border-color .35s;
+    height: 100%;
+}
+.timeline__card:hover { transform: translateY(-6px); border-color: rgba(var(--accent-rgb), .4); }
+.timeline__card i { color: var(--accent); font-size: 1.4rem; margin-bottom: 1rem; display: block; }
+.timeline__card h3 { font-size: 1.05rem; margin-bottom: .5rem; }
+.timeline__card p { font-size: .87rem; color: var(--text-dim); }

@@ -1,0 +1,32 @@
+/* ==========================================================================
+   PRELOADER — a quiet, confident boot: the mark scales in, a thin line
+   fills, everything cross-fades into the page. No terminal text, no glitch —
+   see js/modules/preloader.js.
+   ========================================================================== */
+
+.preloader {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    z-index: var(--z-preloader);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity .8s var(--ease), visibility .8s;
+}
+.preloader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader__inner {
+    display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
+    animation: preloaderIn .9s var(--ease);
+}
+@keyframes preloaderIn {
+    from { opacity: 0; transform: translateY(10px) scale(.96); }
+    to { opacity: 1; transform: none; }
+}
+.preloader__logo {
+    font-family: var(--font-display); font-size: 2.75rem; font-weight: 700;
+    letter-spacing: -.03em;
+    background: linear-gradient(120deg, var(--text), var(--text) 60%, var(--accent));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.preloader__logo-dot { color: var(--accent); -webkit-text-fill-color: var(--accent); animation: blink 1.2s steps(1) infinite; }
+.preloader__bar { width: min(180px, 40vw); height: 2px; background: var(--border-soft); border-radius: 10px; overflow: hidden; }
+.preloader__bar span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .2s var(--ease-soft); }
+.preloader__count { font-family: var(--font-mono); font-size: .78rem; color: var(--text-faint); letter-spacing: .04em; }

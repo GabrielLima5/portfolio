@@ -1,0 +1,48 @@
+/* ==========================================================================
+   CUSTOM CURSOR — dot + ring (js/modules/cursor.js) and the ambient
+   cursor-following spotlight glow.
+   ========================================================================== */
+
+.cursor-dot, .cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+.cursor-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    transition: opacity .2s, background .3s;
+}
+.cursor-ring {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(var(--accent-rgb), .55);
+    transition: width .25s var(--ease-soft), height .25s var(--ease-soft), opacity .2s, background .25s, border-color .3s;
+}
+.cursor-ring.is-link {
+    width: 60px; height: 60px;
+    background: rgba(var(--accent-rgb), .1);
+    border-color: rgba(var(--accent-rgb), .8);
+}
+body.using-touch .cursor-dot, body.using-touch .cursor-ring { display: none; }
+@media (hover: none), (pointer: coarse) {
+    .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* soft "flashlight" that follows the cursor, gently lighting whatever's beneath it */
+.cursor-spotlight {
+    position: fixed; inset: 0;
+    z-index: 850;
+    pointer-events: none;
+    background: radial-gradient(circle 480px at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb), .16), transparent 70%);
+    mix-blend-mode: plus-lighter;
+    opacity: 0;
+    transition: opacity .4s;
+}
+body.spotlight-on .cursor-spotlight { opacity: 1; }
+@media (hover: none), (pointer: coarse) {
+    .cursor-spotlight { display: none; }
+}

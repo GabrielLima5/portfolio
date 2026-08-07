@@ -1,0 +1,78 @@
+/* ==========================================================================
+   BACKGROUND LAYERS — the fixed, full-viewport stack behind all content:
+   particle field, mesh-gradient aurora, film grain and vignette. No hard
+   grid lines here on purpose — the "technical blueprint" look reads as
+   hacker-HUD, not premium hardware; depth instead comes from soft, slowly
+   drifting color washes (Stripe/Linear-style mesh gradients).
+   ========================================================================== */
+
+.bg-layer {
+    position: fixed; inset: 0;
+    z-index: var(--z-bg);
+    overflow: hidden;
+    pointer-events: none;
+}
+#particles { position: absolute; inset: 0; opacity: .45; }
+
+/* scroll-parallax wrapper (js/modules/scroll-parallax.js writes --parallax-y here);
+   kept separate from .bg-aurora itself so it doesn't fight the drift/morph keyframes,
+   which already own the `transform` and `border-radius` of the blob underneath. */
+.bg-aurora-layer {
+    position: absolute; inset: 0;
+    transform: translateY(var(--parallax-y, 0px));
+    will-change: transform;
+}
+
+.bg-aurora {
+    position: absolute;
+    width: 58vw; height: 58vw;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .32;
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+.bg-aurora--a {
+    top: -18%; left: -12%;
+    background: radial-gradient(circle, var(--accent), transparent 65%);
+    animation: driftA 30s ease-in-out infinite, morphA 19s ease-in-out infinite;
+}
+.bg-aurora--b {
+    bottom: -22%; right: -14%;
+    background: radial-gradient(circle, var(--accent-3), transparent 65%);
+    animation: driftB 34s ease-in-out infinite, morphB 23s ease-in-out infinite;
+}
+.bg-aurora--c {
+    top: 32%; left: 46%;
+    width: 42vw; height: 42vw;
+    opacity: .2;
+    background: radial-gradient(circle, var(--accent-2), transparent 68%);
+    animation: driftC 26s ease-in-out infinite, morphA 21s ease-in-out infinite reverse;
+}
+
+.bg-noise {
+    position: absolute; inset: 0;
+    opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+}
+.bg-vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 50% 30%, transparent 40%, var(--bg) 100%);
+}
+
+@keyframes driftA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(7%, 9%) scale(1.12); } }
+@keyframes driftB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-6%, -7%) scale(1.08); } }
+@keyframes driftC { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-8%, 6%) scale(1.1); } }
+
+/* organic blob-morph — cycles the aurora's border-radius through irregular shapes */
+@keyframes morphA {
+    0%, 100% { border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%; }
+    33% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; }
+    66% { border-radius: 35% 65% 55% 45% / 60% 35% 65% 40%; }
+}
+@keyframes morphB {
+    0%, 100% { border-radius: 55% 45% 40% 60% / 40% 55% 45% 60%; }
+    33% { border-radius: 30% 70% 60% 40% / 55% 45% 60% 35%; }
+    66% { border-radius: 65% 35% 45% 55% / 35% 60% 40% 65%; }
+}

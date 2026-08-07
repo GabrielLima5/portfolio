@@ -1,0 +1,28 @@
+/* ==========================================================================
+   SCROLL UI — top progress bar (js/modules/scroll-progress.js) and the
+   back-to-top button (js/modules/contact.js).
+   ========================================================================== */
+
+.progress-bar {
+    position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+    background: rgba(255,255,255,.05);
+    z-index: var(--z-header);
+}
+.progress-bar span {
+    display: block; height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), .8);
+}
+
+.back-to-top {
+    position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 400;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--panel-strong); border: 1px solid var(--border);
+    color: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity .3s, transform .3s, border-color .3s;
+    backdrop-filter: blur(10px);
+}
+.back-to-top.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.back-to-top:hover { border-color: rgba(var(--accent-rgb), .6); color: var(--accent); }
